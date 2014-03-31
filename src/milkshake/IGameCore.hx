@@ -1,4 +1,4 @@
-package milk;
+package milkshake;
 
 interface IGameCore
 {

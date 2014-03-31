@@ -1,5 +1,5 @@
 #if cs
-package milk.mono;
+package milkshake.mono;
 
 import milk.IGame;
 import milk.mono.MonoGame.GameTime;

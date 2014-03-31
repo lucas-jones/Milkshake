@@ -1,6 +1,4 @@
-package milk;
-
-import pixi.IRenderer;
+package milkshake;
 import pixi.Stage;
 
 interface IGame 

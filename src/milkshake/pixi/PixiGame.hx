@@ -1,10 +1,9 @@
 #if js
-package milk.pixi;
+package milkshake.pixi;
 
 import js.Browser;
 import js.html.Element;
-import milk.IGame;
-import milk.IGameCore;
+import milkshake.IGame;
 import pixi.IRenderer;
 import pixi.Pixi;
 import pixi.Stage;
