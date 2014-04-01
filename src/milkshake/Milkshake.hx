@@ -5,7 +5,7 @@ import pixi.Stage;
 class Milkshake implements IGame
 {
 	var gameCore:IGameCore;
-	var stage:Stage;
+	public var stage:Stage;
 	
 	public function new()
 	{
