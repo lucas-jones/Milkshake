@@ -1,16 +1,12 @@
 package milkshake.core;
-
-import pixi.Pixi;
 import pixi.Texture;
 
-class Sprite extends Entity
-{
-	public var sprite:pixi.Sprite;
-	
-	public function new(url:String, id:String="undefined-gameobject") 
+class Sprite extends GameObject
+{	
+	public function new(url:String, id:String="undefined-sprite")
 	{
 		super(id);
 		
-		sprite = new pixi.Sprite(Texture.fromImage(url));
+		displayObject.addChild(new pixi.Sprite(Texture.fromImage(url)));
 	}
 }
