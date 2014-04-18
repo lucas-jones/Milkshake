@@ -4,12 +4,16 @@ package milkshake.pixi;
 import js.Browser;
 import js.html.Element;
 import milkshake.IGame;
+import milkshake.input.IKeyboardInput;
+import milkshake.input.PixiInput;
 import pixi.IRenderer;
 import pixi.Pixi;
 import pixi.Stage;
 
 class PixiGame implements IGameCore
 {	
+	public var input(default, null):IKeyboardInput;
+	
 	var game:IGame;
 	
 	var canvas:Element;
@@ -19,6 +23,7 @@ class PixiGame implements IGameCore
 	public function new()
 	{
 		canvas = js.Browser.document.getElementById("gameCanvas");
+		input = new PixiInput();
 	}
 	
 	public function create(game:IGame, width:Int, height:Int, color:Int):Void
@@ -40,6 +45,8 @@ class PixiGame implements IGameCore
 		Browser.window.requestAnimationFrame(render);
 		
 		game.update(deltaTime);
+		input.update();
+		
 		renderer.render(stage);
 		
 		return true;

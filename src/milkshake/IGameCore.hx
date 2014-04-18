@@ -1,6 +1,10 @@
 package milkshake;
 
+import milkshake.input.IKeyboardInput;
+
 interface IGameCore
 {
-	function create(game:IGame, width:Int, height:Int, color:Int):Void;
+	public var input(default, null):IKeyboardInput;
+	
+	function create(game:IGame, width:Int, height:Int, color:Int):Void;	
 }

@@ -24,8 +24,6 @@ class Entity extends Node
 	{
 		if (Std.is(node, Entity))
 		{
-			trace("Set Scene");
-			trace(scene);
 			var entity:Entity = cast node;
 			
 			entity.setScene(scene);
