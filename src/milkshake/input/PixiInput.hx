@@ -31,9 +31,11 @@ class PixiInput implements IKeyboardInput
 	{
 		if (keyDownMap.indexOf(e.keyCode) == -1)
 		{
-			trace("Press");
 			keyDownMap.push(e.keyCode);
-			if(keyHandlersPress.exists(e.keyCode)) keyHandlersPress.get(e.keyCode)();
+			if (keyHandlersPress.exists(e.keyCode))
+			{
+				keyHandlersPress.get(e.keyCode)();
+			}
 		}
 	}
 	
@@ -82,7 +84,10 @@ class PixiInput implements IKeyboardInput
 	{
 		for (key in keyDownMap)
 		{
-			if(keyHandlersDown.exists(key)) keyHandlersDown.get(key)();
+			if (keyHandlersDown.exists(key))
+			{
+				keyHandlersDown.get(key)();
+			}
 		}
 	}
 }
