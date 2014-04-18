@@ -12,7 +12,7 @@ class Milkshake implements IGame
 	
 	}
 	
-	public function boot(width:Int, height:Int):Void
+	public function boot(width:Float, height:Float):Void
 	{
 		#if js
 			core = new milkshake.pixi.PixiGame();
