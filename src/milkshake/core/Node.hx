@@ -1,4 +1,5 @@
 package milkshake.core;
+import haxe.exception.Exception;
 import hsl.haxe.direct.DirectSignaler.DirectSignaler;
 import hsl.haxe.Signaler.Signaler;
 
@@ -36,12 +37,28 @@ class Node
 		nodes.remove(node);
 	}
 	
-	public function getNodeById(id:String):Node
+	public function getNodeById<T>(id:String):T
 	{
-		return nodes.filter(function(node:Node):Bool
+		var t:T;
+		var n = nodes.filter(function(node:Node):Bool
 		{
 			return node.id == id;
 		})[0];
+		
+		if (n == null)
+		{
+			trace("Child node not found with id '" + id + "' in node '" + this.id + "'!");
+			return null;
+		}
+		
+		if (Std.is(n, t))
+		{
+			t = cast n;
+			return t;
+		}
+		
+		trace("Found node with'" + id + "'but could not cast to type '" + t + "'!");
+		return null;
 	}
 	
 	public function dispatchOnNodeAdded(node:Node):Void

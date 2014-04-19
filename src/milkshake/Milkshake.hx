@@ -9,7 +9,7 @@ class Milkshake implements IGame
 	
 	public function new()
 	{
-	
+
 	}
 	
 	public function boot(width:Float, height:Float):Void
@@ -31,4 +31,5 @@ class Milkshake implements IGame
 	public function update(delta:Float):Void
 	{
 	}
+
 }
