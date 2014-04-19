@@ -18,23 +18,40 @@ class Entity extends Node
 	public function setScene(scene:Scene):Void
 	{
 		this.scene = scene;
+		
+		for (node in nodes)
+		{
+			setNodeIfEntity(node);
+		}
 	}
 	
 	override public function addNode(node:Node):Void 
 	{
-		if (Std.is(node, Entity))
-		{
-			var entity:Entity = cast node;
-			
-			entity.setScene(scene);
-			
-			scene.onNodeAdded.dispatch(node);
-		}
-		
+		setNodeIfEntity(node);
 		super.addNode(node);
 	}
 	
-	public function update(deltaTime:Float):Void { }
+	function setNodeIfEntity(node:Node) 
+	{
+		if (Std.is(node, Entity) && scene != null)
+		{
+			var entity:Entity = cast node;
+			entity.setScene(scene);
+			scene.onNodeAdded.dispatch(node);
+		}
+	}
+	
+	public function update(deltaTime:Float):Void 
+	{
+		for (node in nodes)
+		{
+			if (Std.is(node, Entity) && scene != null)
+			{
+				var entity:Entity = cast node;
+				entity.update(deltaTime);
+			}
+		}
+	}
 	
 	public function get_x():Float { return x; }	
 	public function set_x(value:Float):Float { return x = value; }

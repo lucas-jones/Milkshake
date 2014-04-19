@@ -13,11 +13,13 @@ class Sprite extends GameObject
 	{
 		super(id);
 		
-		displayObject.addChild(sprite = new pixi.Sprite(Texture.fromImage(url)));
-		
-		// Default?
-		sprite.anchor.x = 0.5;
-		sprite.anchor.y = 0.5;
+		if (url != "") 
+		{
+			displayObject.addChild(sprite = new pixi.Sprite(Texture.fromImage(url)));
+			// Default?
+			sprite.anchor.x = 0.5;
+			sprite.anchor.y = 0.5;
+		}
 	}
 	
 	public function get_width():Float { return sprite.width; }

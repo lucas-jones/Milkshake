@@ -26,7 +26,7 @@ class PixiGame implements IGameCore
 		input = new PixiInput();
 	}
 	
-	public function create(game:IGame, width:Int, height:Int, color:Int):Void
+	public function create(game:IGame, width:Float, height:Float, color:Int):Void
 	{
 		this.game = game;
 		untyped this.canvas.width = width;
