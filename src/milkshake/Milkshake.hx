@@ -20,7 +20,7 @@ class Milkshake implements IGame
 			core = new milkshake.mono.MonoGame();
 		#end
 		
-		core.create(this, width, height, 0xFFF000);
+		core.create(this, width, height, 0x33CCFF);
 	}
 	
 	public function setStage(stage:Stage):Void
