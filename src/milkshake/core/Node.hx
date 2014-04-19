@@ -26,6 +26,8 @@ class Node
 	
 	public function addNode(node:Node):Void
 	{
+		node.setParent(this);
+		
 		nodes.push(node);
 	}
 	
