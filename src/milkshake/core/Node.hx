@@ -57,7 +57,7 @@ class Node
 			return t;
 		}
 		
-		trace("Found node with'" + id + "'but could not cast to type '" + t + "'!");
+		trace("Found node with id '" + id + "'but could not cast to type '" + t + "'!");
 		return null;
 	}
 	
