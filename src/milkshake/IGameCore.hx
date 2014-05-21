@@ -1,6 +1,6 @@
 package milkshake;
 
-import milkshake.input.IKeyboardInput;
+import milkshake.io.input.IKeyboardInput;
 
 interface IGameCore
 {

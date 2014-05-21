@@ -1,4 +1,4 @@
-package milkshake.input;
+package milkshake.io.input;
 
 import js.Browser;
 import js.html.Event;

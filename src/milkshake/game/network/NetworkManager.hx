@@ -4,7 +4,7 @@ import js.node.SocketIoClient.Io;
 
 class NetworkManager
 {
-	private var socket:SocketNamespace;
+	public var socket:SocketNamespace;
 	
 	public function new(url:String) 
 	{
