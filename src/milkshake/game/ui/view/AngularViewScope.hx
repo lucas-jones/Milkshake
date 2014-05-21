@@ -1,11 +1,12 @@
 package milkshake.game.ui.view;
+
 import milkshake.game.MilkshakeGame;
 
 /**
  * ...
  * @author Milkshake-Inc
  */
-typedef AngularViewScope
+typedef AngularViewScope =
 {
 	public var game:MilkshakeGame;
 	public var controller:Dynamic;

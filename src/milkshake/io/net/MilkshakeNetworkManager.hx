@@ -13,7 +13,5 @@ class MilkshakeNetworkManager extends NetworkManager
 		super("127.0.0.1:3000");
 		
 		this.sceneManager = sceneManager;
-		
-		
 	}
 }
