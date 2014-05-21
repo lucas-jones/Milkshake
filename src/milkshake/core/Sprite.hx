@@ -1,5 +1,6 @@
 package milkshake.core;
 
+import pixi.BaseTexture;
 import pixi.Texture;
 
 class Sprite extends GameObject
@@ -13,9 +14,12 @@ class Sprite extends GameObject
 	{
 		super(id);
 		
-		if (url != "") 
+		if (url != "")
 		{
 			displayObject.addChild(sprite = new pixi.Sprite(Texture.fromImage(url)));
+			//var texture:TextureMap = new TextureMap(BaseTexture.fromImage(url));
+			
+			//displayObject.addChild(sprite = new pixi.Sprite(texture));
 			// Default?
 			sprite.anchor.x = 0.5;
 			sprite.anchor.y = 0.5;

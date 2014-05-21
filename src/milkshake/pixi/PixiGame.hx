@@ -37,6 +37,14 @@ class PixiGame implements IGameCore
 		
 		renderer = Pixi.autoDetectRenderer(width, height, canvas);
 		
+		untyped
+		{
+			Browser.window.gl = renderer.renderSession.gl;
+			
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+			gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+		}
+		
 		Browser.window.requestAnimationFrame(render);	
 	}
 	
