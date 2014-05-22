@@ -10,7 +10,7 @@ class MilkshakeNetworkManager extends NetworkManager
 	
 	public function new(sceneManager:SceneManager)
 	{
-		super("127.0.0.1:3000");
+		super(Globals.SERVER_ADDRESS);
 		
 		this.sceneManager = sceneManager;
 	}

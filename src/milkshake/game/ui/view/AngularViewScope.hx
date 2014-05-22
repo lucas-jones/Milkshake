@@ -6,7 +6,7 @@ import milkshake.game.MilkshakeGame;
  * ...
  * @author Milkshake-Inc
  */
-typedef AngularViewScope =
+interface AngularViewScope
 {
 	public var game:MilkshakeGame;
 	public var controller:Dynamic;
