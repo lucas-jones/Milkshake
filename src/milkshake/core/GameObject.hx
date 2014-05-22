@@ -19,6 +19,11 @@ class GameObject extends Entity
 	{
 		super(id);
 		
+		setup();
+	}
+	
+	public function setup():Void
+	{
 		displayObject = new DisplayObjectContainer();
 	}
 	
