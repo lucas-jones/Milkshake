@@ -6,6 +6,9 @@ import milkshake.game.ui.view.AngularViewAttibutes.AngularViewAttributes;
  * ...
  * @author Milkshake-Inc
  */
+@:expose
+@:build(milkshake.game.ui.view.AngularControllerTransformer.build())
+@:autoBuild(milkshake.game.ui.view.AngularControllerTransformer.build())
 class AngularViewController<T:AngularViewScope> extends AbstractViewController
 {
 	

@@ -18,10 +18,8 @@ class ViewManager
 		views.set(id, view);
 	}
 	
-	public function getView<T : AbstractViewController>(id:String): T
+	public function getViewById(id:String): AbstractViewController
 	{
-		var t:T;
-		var view:AbstractViewController = views.get(id);
-		return t = cast view;
+		return views.get(id);
 	}
 }
