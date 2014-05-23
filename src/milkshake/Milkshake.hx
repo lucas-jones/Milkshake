@@ -12,7 +12,7 @@ class Milkshake implements IGame
 
 	}
 	
-	public function boot(width:Float, height:Float):Void
+	public function boot(width:Float, height:Float, color:Int):Void
 	{
 		#if js
 			core = new milkshake.pixi.PixiGame();
@@ -20,7 +20,7 @@ class Milkshake implements IGame
 			core = new milkshake.mono.MonoGame();
 		#end
 		
-		core.create(this, width, height, 0xc0392b);
+		core.create(this, width, height, color);
 	}
 	
 	public function setStage(stage:Stage):Void
