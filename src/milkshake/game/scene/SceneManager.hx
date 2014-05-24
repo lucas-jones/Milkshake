@@ -25,6 +25,14 @@ class SceneManager extends GameObject
 		scenes.remove(key);
 	}
 	
+	public function initialised():Void
+	{
+		for (key in scenes.keys())
+		{
+			scenes.get(key).onLoaded();
+		}
+	}
+	
 	public function changeScene(key:String):Void
 	{
 		removeNode(currentScene);

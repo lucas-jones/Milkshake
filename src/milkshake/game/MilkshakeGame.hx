@@ -5,6 +5,7 @@ import milkshake.game.scene.SceneManager;
 import milkshake.game.ui.view.AbstractViewController;
 import milkshake.game.ui.view.ViewManager;
 import milkshake.Milkshake;
+import nape.space.Space;
 import pixi.Stage;
 
 class MilkshakeGame extends Milkshake
@@ -14,6 +15,8 @@ class MilkshakeGame extends Milkshake
 	public var viewManager(default, null):ViewManager;
 	
 	public static var instance(default, null):MilkshakeGame;
+	
+	public var isInitialised(default, null):Bool = false;
 	
 	public function new()
 	{
@@ -35,5 +38,12 @@ class MilkshakeGame extends Milkshake
 		super.update(delta);
 		
 		sceneManager.update(delta);
+	}
+	
+	public function onInitialised():Void
+	{
+		isInitialised = true;
+		
+		sceneManager.initialised();
 	}
 }

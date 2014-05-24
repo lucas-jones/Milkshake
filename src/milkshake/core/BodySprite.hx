@@ -1,5 +1,9 @@
 package milkshake.core;
+import milkshake.game.MilkshakeGame;
 import nape.phys.Body;
+import nape.phys.BodyType;
+import nape.shape.Shape;
+import nape.space.Space;
 
 /**
  * ...
@@ -13,7 +17,9 @@ class BodySprite extends Sprite
 	{
 		super(url, id);
 		
-		body = new Body();
+		body = new Body(BodyType.DYNAMIC);
+		var shape = new Shape();
+		body.shapes.add(shape);
 	}
 	
 	override public function set_x(value:Float):Float 
