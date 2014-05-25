@@ -3,6 +3,7 @@ package milkshake.game.scene;
 import js.JQuery;
 import js.JQuery.JqEvent;
 import milkshake.core.GameObject;
+import milkshake.game.camera.CameraManager;
 import milkshake.game.scene.component.SceneComponentManager;
 import milkshake.IGame;
 
@@ -10,6 +11,7 @@ class Scene extends GameObject
 {
 	public var core(default, null):IGameCore;
 	public var componentManager(default, null):SceneComponentManager;
+	public var cameraManager(default, null):CameraManager;
 	
 	public function new(core:IGameCore, id:String="undefined-scene") 
 	{
@@ -20,6 +22,8 @@ class Scene extends GameObject
 		setScene(this);
 		
 		addNode(componentManager = new SceneComponentManager());
+
+		componentManager.addNode(cameraManager = new CameraManager());
 	}
 	
 	public function onLoaded():Void

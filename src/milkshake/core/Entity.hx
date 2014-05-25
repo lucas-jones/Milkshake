@@ -1,14 +1,14 @@
 package milkshake.core;
 
 import milkshake.core.Node;
-import milkshake.core.utils.Vector2;
 import milkshake.game.scene.Scene;
+import nape.geom.Vec2;
 
 class Entity extends Node
 {
 	public var scene(default, null):Scene;
 	
-	private var position:Vector2;
+	private var position:Vec2;
 	
 	@:isVar public var x(get, set):Float;
 	@:isVar public var y(get, set):Float;
@@ -16,7 +16,7 @@ class Entity extends Node
 	public function new(id:String="undefined-entity") 
 	{
 		super(id);
-		position = Vector2.zero();
+		position = new Vec2();
 	}
 	
 	public function setScene(scene:Scene):Void

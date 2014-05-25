@@ -19,7 +19,7 @@ class SceneComponentManager extends Entity
 		if (Std.is(node, SceneComponent))
 		{
 			var component:SceneComponent = cast node;
-			trace("Adding nodscene");
+			trace("Adding scene node");
 			super.addNode(node);
 		}
 		else
