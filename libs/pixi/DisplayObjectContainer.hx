@@ -9,4 +9,5 @@ extern class DisplayObjectContainer extends DisplayObject {
   public function swapChildren(child1:DisplayObject, child2:DisplayObject):Void;
 
   public var children:DisplayObject;
+  public var mask:Graphics;
 }

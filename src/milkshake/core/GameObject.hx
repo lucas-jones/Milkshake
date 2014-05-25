@@ -3,6 +3,7 @@ package milkshake.core;
 import milkshake.core.Node;
 import pixi.DisplayObject;
 import pixi.DisplayObjectContainer;
+import pixi.Graphics;
 
 class GameObject extends Entity
 {

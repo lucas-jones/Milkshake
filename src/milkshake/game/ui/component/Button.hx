@@ -14,11 +14,10 @@ class Button extends GameObject
 {
 	private var over:Bool = false;
 	private var graphics:Graphics;
-	
-	private var width:Float;
-	private var height:Float;
 	private var color:Int;
 	private var colorOver:Int;
+	var height:Float;
+	var width:Float;
 	
 	public function new(width:Float, height:Float, text:String, color:Int, ?colorOver:Int) 
 	{

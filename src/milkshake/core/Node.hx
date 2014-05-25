@@ -34,6 +34,7 @@ class Node
 	
 	public function removeNode(node:Node):Void
 	{
+		if (node == null) return;
 		nodes.remove(node);
 	}
 	

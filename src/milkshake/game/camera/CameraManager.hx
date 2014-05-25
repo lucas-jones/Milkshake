@@ -9,7 +9,7 @@ import milkshake.game.scene.Scene;
  */
 class CameraManager extends SceneComponent
 {
-	public var DEFAULT_CAMERA_NAME(default, never):String = "Default";
+	public var DEFAULT_CAMERA_NAME(default, never):String = "default_camera";
 	
 	public var cameras:Map<String, Camera>;
 	
@@ -17,19 +17,19 @@ class CameraManager extends SceneComponent
 	
 	public var currentCameraKey(default, null):String;
 	
-	public function new() 
+	public function new(scene:Scene) 
 	{
+		super("camera_manager");
+		
 		cameras = new Map<String, Camera>();
 		
 		addCamera(DEFAULT_CAMERA_NAME, new Camera());
-        setCamera(DEFAULT_CAMERA_NAME);
-		
-		super("camera_manager");
 	}
 	
 	public function addCamera(name:String, camera:Camera)
 	{
 		cameras.set(name, camera);
+		if (currentCamera == null) changeCamera(name);
 	}
 	
 	public function get_currentCamera():Camera
@@ -37,11 +37,12 @@ class CameraManager extends SceneComponent
 		return cameras.get(currentCameraKey);
 	}
 
-	public function setCamera(name:String)
+	public function changeCamera(name:String)
 	{
 		if (!cameras.exists(name)) throw new Exception("Camera not found!");
-
+		removeNode(currentCamera);
 		currentCameraKey = name;
+		addNode(currentCamera);
 	}
 
 }

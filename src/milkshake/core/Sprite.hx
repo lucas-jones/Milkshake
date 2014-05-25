@@ -8,9 +8,6 @@ class Sprite extends GameObject
 	var url:String;
 	var sprite(default, null):pixi.Sprite;
 	
-	public var width(get, set):Float;
-	public var height(get, set):Float;
-	
 	public function new(url:String, id:String="undefined-sprite")
 	{
 		this.url = url;

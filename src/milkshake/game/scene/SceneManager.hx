@@ -27,10 +27,7 @@ class SceneManager extends GameObject
 	
 	public function initialised():Void
 	{
-		for (key in scenes.keys())
-		{
-			scenes.get(key).onLoaded();
-		}
+
 	}
 	
 	public function changeScene(key:String):Void
