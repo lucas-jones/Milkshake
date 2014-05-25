@@ -1,6 +1,7 @@
 package milkshake.core;
 
 import milkshake.core.Node;
+import nape.geom.Vec2;
 import pixi.DisplayObject;
 import pixi.DisplayObjectContainer;
 import pixi.Graphics;
@@ -16,10 +17,13 @@ class GameObject extends Entity
 	public var visible(get, set):Bool;
 	public var rotation(get, set):Float;
 	
+	public var ignoreCameraZoom:Bool = false;
+	var scale:Vec2;
+	
 	public function new(id:String = "undefined-gameobject") 
 	{
 		super(id);
-		
+		scale = new Vec2(1, 1);
 		setup();
 	}
 	
@@ -66,11 +70,27 @@ class GameObject extends Entity
 		return super.set_y(value);
 	}
 	
-	public function get_scaleX():Float { return displayObject.scale.x; }
-	public function set_scaleX(value:Float):Float { return displayObject.scale.x = value; }
+	override public function update(deltaTime:Float):Void 
+	{
+		if (ignoreCameraZoom == true)
+		{
+			displayObject.scale.x =  scale.x / scene.cameraManager.currentCamera.zoom;
+			displayObject.scale.y =  scale.y / scene.cameraManager.currentCamera.zoom;
+		}
+		else
+		{
+			displayObject.scale.x = scale.x;
+			displayObject.scale.y = scale.y;
+		}
+		
+		super.update(deltaTime);
+	}
 	
-	public function get_scaleY():Float { return displayObject.scale.y; }
-	public function set_scaleY(value:Float):Float { return displayObject.scale.y = value; }
+	public function get_scaleX():Float { return scale.x; }
+	public function set_scaleX(value:Float):Float { return scale.x = value; }
+	
+	public function get_scaleY():Float { return scale.y; }
+	public function set_scaleY(value:Float):Float { return scale.y = value; }
 	
 	public function get_rotation():Float { return displayObject.rotation; }
 	public function set_rotation(value:Float):Float { return displayObject.rotation = value; }
