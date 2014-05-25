@@ -6,6 +6,7 @@ import milkshake.core.GameObject;
 import milkshake.game.camera.CameraManager;
 import milkshake.game.scene.component.SceneComponentManager;
 import milkshake.IGame;
+import nape.geom.Vec2;
 import pixi.Graphics;
 
 class Scene extends GameObject
@@ -17,6 +18,9 @@ class Scene extends GameObject
 	public var width(get, set):Float;
 	public var height(get, set):Float;
 	
+	public var offset(get, set):Vec2;
+	
+	var maskOffset:Vec2;
 	var maskWidth:Float;
 	var maskHeight:Float;
 	
@@ -36,6 +40,7 @@ class Scene extends GameObject
 	override public function setup():Void 
 	{
 		super.setup();
+		maskOffset = new Vec2();
 		maskWidth = Globals.SCREEN_WIDTH;
 		maskHeight = Globals.SCREEN_HEIGHT;
 		setMask();
@@ -45,27 +50,35 @@ class Scene extends GameObject
 	{
 		var mask = new Graphics();
 		mask.beginFill(0);
-		mask.drawRect(x , y, maskWidth, maskHeight);
+		mask.drawRect(offset.x, offset.y, maskWidth, maskHeight);
 		displayObject.mask = mask;
+	}
+	
+	public function get_offset():Vec2 { return maskOffset; }
+	public function set_offset(value:Vec2):Vec2
+	{ 
+		return maskOffset = value;
 	}
 	
 	public function get_width():Float { return maskWidth; }
 	public function set_width(value:Float):Float 
 	{ 
-		maskWidth = value;
-		setMask();
-		return maskWidth;
+		return maskWidth = value;
 	}
 	
 	public function get_height():Float { return maskHeight; }
 	public function set_height(value:Float):Float
 	{ 
-		maskHeight = value;
-		setMask();
-		return maskHeight; 
+		return maskHeight = value;
 	}
 	
-	override public function set_x(value:Float):Float 
+	override public function update(deltaTime:Float):Void 
+	{
+		setMask();
+		super.update(deltaTime);
+	}
+	
+/*	override public function set_x(value:Float):Float 
 	{
 		super.set_x(value);
 		setMask();
@@ -77,5 +90,5 @@ class Scene extends GameObject
 		super.set_y(value);
 		setMask();
 		return y;
-	}
+	}*/
 }
