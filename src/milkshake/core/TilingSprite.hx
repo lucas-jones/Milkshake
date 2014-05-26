@@ -6,8 +6,10 @@ class TilingSprite extends GameObject
 {
 	var width:Int;
 	var height:Int;
-	public var url(default, null):String;
 	var sprite(default, null):pixi.TilingSprite;
+	
+	public var url(default, null):String;
+	public var alpha(get, set):Float;
 	
 	public function new(url:String, width:Int, height:Int, id:String="undefined-sprite")
 	{
@@ -15,6 +17,16 @@ class TilingSprite extends GameObject
 		this.width = width;
 		this.height = height;
 		super(id);
+	}
+	
+	public function get_alpha():Float
+	{
+		return sprite.alpha;
+	}
+	
+	public function set_alpha(value:Float):Float
+	{
+		return sprite.alpha = value;
 	}
 	
 	override public function setup():Void 

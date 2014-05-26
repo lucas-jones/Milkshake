@@ -7,7 +7,6 @@ import milkshake.game.ui.view.ViewManager;
 import milkshake.Milkshake;
 import nape.space.Space;
 import pixi.Stage;
-import views.hud.ZoomViewController;
 
 class MilkshakeGame extends Milkshake
 {
