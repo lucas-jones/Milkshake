@@ -17,7 +17,7 @@ extern class DisplayObject {
   public var touchendoutside:InteractionData->Void;
   public var touchstart:InteractionData->Void;
   public var touchmove:InteractionData->Void;
-
+  public var anchor:Point;
   public var alpha:Float;
   public var buttonMode:Bool;
   public var hitArea:Rectangle;
