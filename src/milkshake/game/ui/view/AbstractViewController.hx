@@ -43,6 +43,11 @@ class AbstractViewController extends Node
 		isOpen = false;
 	}
 	
+	public function update(deltaTime:Float):Void 
+	{
+		
+	}
+	
 	function set_isOpen(value:Bool):Bool
 	{
 		isOpen = value;

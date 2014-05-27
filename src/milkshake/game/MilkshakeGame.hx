@@ -38,6 +38,7 @@ class MilkshakeGame extends Milkshake
 		super.update(delta);
 		
 		sceneManager.update(delta);
+		viewManager.update(delta);
 	}
 	
 	public function onInitialised():Void

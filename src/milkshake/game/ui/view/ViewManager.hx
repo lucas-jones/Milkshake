@@ -22,4 +22,12 @@ class ViewManager
 	{
 		return views.get(id);
 	}
+	
+	public function update(deltaTime:Float):Void 
+	{
+		for (view in views)
+		{
+			view.update(deltaTime);
+		}
+	}
 }
