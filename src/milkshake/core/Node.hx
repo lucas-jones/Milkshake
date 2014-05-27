@@ -12,9 +12,9 @@ class Node
 	public var onNodeAdded(default, null):Signaler<Node>;
 	public var onNodeRemoved(default, null):Signaler<Node>;
 	
-	public function new(id:String = "undefined-node")
+	public function new(?id:String = null)
 	{
-		this.id = id;
+		this.id = id == null ? Type.typeof(this).getName() : id;
 		this.nodes = [];
 		
 		this.onNodeAdded = new DirectSignaler(this);
