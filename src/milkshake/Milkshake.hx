@@ -2,34 +2,40 @@ package milkshake;
 
 import pixi.Stage;
 
-class Milkshake implements IGame
+class Milkshake
 {
-	public var core(default, null):IGameCore;
-	public var stage:Stage;
+	private var instance:Milkshake;
+
+	public function getInstance():Milkshake
+	{
+		return instance != null ? instance : instance = new Milkshake();
+	}
+
+	public var stage(default, null):Stage;
 	
+	public var scenes(default, null):SceneEngine;
+	//public var audio(default, null):AudioEngine;
+	//public var input(default, null):InputEngine;
+	//public var effects(default, null):EffectsEngine;
+
+	public static function new():Void
+	{
+		
+	}
+
 	public function new()
 	{
+		sceneManager = new SceneManager();
+	}
+	
+	// @Width & @Height from .mlk
+	public function create(color:Int):Void
+	{
+		stage = new Stage(color);
+	}
 
-	}
-	
-	public function boot(width:Float, height:Float, color:Int):Void
-	{
-		#if js
-			core = new milkshake.pixi.PixiGame();
-		#else 
-			core = new milkshake.mono.MonoGame();
-		#end
-		
-		core.create(this, width, height, color);
-	}
-	
-	public function setStage(stage:Stage):Void
-	{
-		this.stage = stage;
-	}
-	
 	public function update(delta:Float):Void
 	{
-	}
 
+	}
 }

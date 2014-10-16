@@ -1,5 +1,6 @@
 package milkshake.game.scene;
 import milkshake.core.GameObject;
+
 class SceneManager extends GameObject
 {
 	public var scenes(default, null):Map<String, Scene>;

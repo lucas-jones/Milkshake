@@ -1,0 +1,5 @@
+-main milkshake.Milkshake
+-cp libs
+-cp src
+-D pixijs
+-js app.js
