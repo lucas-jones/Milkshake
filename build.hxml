@@ -1,5 +1,6 @@
 -main milkshake.Milkshake
 -cp libs
 -cp src
+-lib compiletime
 -D pixijs
 -js app.js

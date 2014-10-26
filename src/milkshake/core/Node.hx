@@ -6,8 +6,8 @@ import hsl.haxe.Signaler.Signaler;
 
 class Node
 {
-	public var id(default, default):String;
-	public var parent(default, set):Node;
+	public var id:String;
+	public var parent:Node;
 	
 	public var nodes(default, null):Array<Node>;
 	
@@ -21,6 +21,11 @@ class Node
 		
 		this.onNodeAdded = new DirectSignaler(this);
 		this.onNodeRemoved = new DirectSignaler(this);
+	}
+
+	public function update(deltaTime:Float):Void
+	{
+		for(node in nodes) node.update(deltaTime);
 	}
 
 	public function addNode(node:Node):Void

@@ -1,51 +1,48 @@
 package milkshake.game.scene;
-import milkshake.core.GameObject;
 
-class SceneManager extends GameObject
+import milkshake.core.DisplayObject;
+import milkshake.game.scene.Scene;
+import pixi.Stage;
+
+class SceneManager extends DisplayObject
 {
 	public var scenes(default, null):Map<String, Scene>;
-	public var currentScene(get, null):Scene;
-	public var currentSceneKey(default, null):String;
+
+	public var currentScene(default, null):Scene;
 	
 	public function new() 
 	{
 		super("sceneManager");
-		scenes = new Map<String, Scene>();
-		currentSceneKey = null;
-	}
-	
-	public function addScene(key:String, scene:Scene):Void
-	{
-		scenes.set(key, scene);
-		
-		if (currentSceneKey == null) changeScene(key);
-	}
-	
-	public function removeScene(key:String):Void
-	{
-		scenes.remove(key);
-	}
-	
-	public function initialised():Void
-	{
 
+		scenes = new Map<String, Scene>();
 	}
 	
-	public function changeScene(key:String):Void
+	public function addScene(scene:Scene):Void
+	{
+		scenes.set(scene.id, scene);
+		
+		// Default Scene
+		if (currentScene == null) changeScene(scene.id);
+	}
+	
+	public function removeScene(sceneId:String):Void
+	{
+		scenes.remove(sceneId);
+	}
+	
+	public function changeScene(sceneId:String):Void
 	{
 		removeNode(currentScene);
-		currentSceneKey = key;
-		addNode(currentScene);
-	}
-	
-	public function get_currentScene():Scene
-	{
-		return scenes.get(currentSceneKey);
+		addNode(scenes.get(sceneId));
 	}
 	
 	override public function update(deltaTime:Float):Void 
 	{
-		if(currentScene != null) currentScene.update(deltaTime);
+		if(currentScene != null) 
+		{
+			currentScene.update(deltaTime);
+		}
+
 		super.update(deltaTime);
 	}
 }
