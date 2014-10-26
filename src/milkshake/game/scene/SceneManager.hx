@@ -32,7 +32,8 @@ class SceneManager extends DisplayObject
 	
 	public function changeScene(sceneId:String):Void
 	{
-		removeNode(currentScene);
+		if(currentScene != null) removeNode(currentScene);
+		
 		addNode(scenes.get(sceneId));
 	}
 	

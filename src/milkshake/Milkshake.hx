@@ -8,7 +8,7 @@ class Settings
 	public static function fromMilk(milkFile:String):Settings
 	{
 		// return cast Json.parse(milkFile)
-		return null;
+		return new Settings();
 	}
 
 	public var width(default, null):Int;
@@ -16,7 +16,7 @@ class Settings
 
 	public var color(default, null):Int;
 
-	public function new(width:Int = 1280, height:Int = 720, color:Int = 0xFF0000)
+	public function new(width:Int = 1280, height:Int = 720, color:Int = 0xFFF000)
 	{
 		this.width = width;
 		this.height = height;
@@ -25,9 +25,12 @@ class Settings
 	}
 }
 
+@:expose
 class Milkshake
 {
 	private static var instance:Milkshake;
+
+	public var onCreated:Void->Void;
 
 	public static function getInstance():Milkshake
 	{
@@ -37,9 +40,9 @@ class Milkshake
 		return null;
 	}
 
-	public static function boot(settings:Settings):Milkshake
+	public static function boot(?settings:Settings):Milkshake
 	{
-		return instance = new Milkshake(settings);
+		return instance = new Milkshake(settings != null ? settings : new Settings());
 	}
 
 	public var settings(default, null):Settings; // HAve getters for properties inside json
