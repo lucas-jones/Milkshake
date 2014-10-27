@@ -33,8 +33,10 @@ class SceneManager extends DisplayObject
 	public function changeScene(sceneId:String):Void
 	{
 		if(currentScene != null) removeNode(currentScene);
-		
-		addNode(scenes.get(sceneId));
+
+		currentScene = scenes.get(sceneId);
+
+		addNode(currentScene);
 	}
 	
 	override public function update(deltaTime:Float):Void 

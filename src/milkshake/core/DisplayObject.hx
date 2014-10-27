@@ -3,19 +3,33 @@ package milkshake.core;
 import milkshake.core.Node;
 
 import milkshake.game.scene.Scene;
+import milkshake.math.Vector2;
 import pixi.DisplayObjectContainer;
 
 class DisplayObject extends Entity
 {
 	public var scene(default, default):Scene;
+
 	
-	public var visible(get, set):Bool;	
+	public var scale(default, null):Vector2;
+	public var pivot(default, null):Vector2;
+	public var rotation(default, null):Float;
+	
+	public var visible(default, null):Bool;
+	public var alpha:Float;
 
 	public var displayObject(default, null):DisplayObjectContainer;
 
 	public function new(?id:String)
 	{
 		super(id);
+
+		scale = Vector2.ONE;
+		pivot = Vector2.ONE;
+		rotation = 0;
+
+		visible = true;
+		alpha = 1;
 
 		displayObject = new DisplayObjectContainer();
 	}
@@ -31,7 +45,7 @@ class DisplayObject extends Entity
 			displayObjectNode.create();
 		}
 		
-		super.removeNode(node);
+		super.addNode(node);
 	}
 	
 	override public function removeNode(node:Node):Void 
@@ -48,6 +62,32 @@ class DisplayObject extends Entity
 		super.removeNode(node);
 	}
 
+	override public function update(delta:Float):Void
+	{
+		displayObject.position.x = position.x;
+		displayObject.position.y = position.y;
+
+		displayObject.scale.x = scale.x;
+		displayObject.scale.y = scale.y;
+
+		displayObject.alpha = alpha;
+		
+		displayObject.pivot.x = pivot.x;
+		displayObject.pivot.y = pivot.y;
+
+		displayObject.rotation = rotation;
+		/*
+		
+
+		
+
+		
+
+		displayObject.visible = visible;
+		displayObject.alpha = alpha;
+	*/
+		super.update(delta);
+	}
 
 	public function create():Void
 	{
@@ -58,7 +98,4 @@ class DisplayObject extends Entity
 	{
 		
 	}
-	
-	public function get_visible():Bool { return displayObject.visible; }
-	public function set_visible(value:Bool):Bool { return displayObject.visible = value; }
 }

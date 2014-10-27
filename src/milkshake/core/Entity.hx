@@ -12,7 +12,7 @@ class Entity extends Node
 	{
 		super(id);
 
-		position = new Vector2();
+		position = Vector2.ZERO;
 	}
 
 	public var x(get, set):Float;
