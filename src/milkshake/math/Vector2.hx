@@ -21,6 +21,11 @@ class Vector2
 		return new Vector2(1, 1);
 	}
 
+	public static function EQUAL(value:Float):Vector2
+	{
+		return new Vector2(value, value);
+	}
+
 	public var x:Float;
 	public var y:Float;
 
