@@ -11,13 +11,26 @@ class Camera extends DisplayObject
 
 	public static function get_DEFAULT():Camera
 	{
-		return new Camera(Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT);
+		return new Camera(0, 0, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT);
+	}
+
+	// SplitScreen 2 hora
+	public static var SPLIT_HORIZONTAL(get, null):Array<Camera>;
+
+	public static function get_SPLIT_HORIZONTAL():Array<Camera>
+	{
+		return
+		[
+			new Camera(0, 0, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT / 2),
+			new Camera(0, Globals.SCREEN_WIDTH / 2, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT / 2)
+		]
 	}
 
 	public var width(default, null):Int;
 	public var height(default, null):Int;
 
-	public function new(width:Int, height:Int)
+	// MAybe take Rectangle. THat way get_DEFAULT = Globals.SCREEN_BOX / Globals.SCREEN / 
+	public function new(x:Int, height:Int, width:Int, height:Int)
 	{
 		super();
 
