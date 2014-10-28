@@ -11,6 +11,9 @@ class Sprite extends DisplayObject
 	var sprite(default, null):pixi.Sprite;
 
 	public var anchor(default, default):Vector2;
+
+	public var width(default, default):Int;
+	public var height(default, default):Int;
 	
 	public function new(url:String, id:String="undefined-sprite")
 	{
@@ -26,6 +29,9 @@ class Sprite extends DisplayObject
 	{
 		sprite.anchor.x = anchor.x;
 		sprite.anchor.y = anchor.y;
+
+		sprite.width = width;
+		sprite.height = height;
 
 		super.update(delta);
 	}
