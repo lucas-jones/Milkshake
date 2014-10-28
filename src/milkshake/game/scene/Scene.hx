@@ -10,7 +10,9 @@ class Scene extends DisplayObject
 	public function new(?id:String)
 	{
 		super(id);
-		
+
+		scene = this;
+
 		cameras = new CameraManager();		
 	}
 
