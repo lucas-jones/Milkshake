@@ -3,34 +3,39 @@ package milkshake.game.scene.camera;
 import milkshake.core.Entity;
 import milkshake.core.Node;
 
+
+// Array<CameraSettings>  CameraSettings.DEAULT, CameraSettings.
+// Array<Camera>  Camera.DEAULT, CameraSettings.
+// [ new Camera() ]
+
 class CameraManager extends Node /*Scene Component*/
 {
-	public var cameras(default, null):Map<String, Camera>;
-	public var currentCamera(default, null):Camera;
+	public var cameras(default, null):Array<Camera>;
+	
+	//public var activeCameras(get, null):Array<Camera>;
 
-	public function new(?camera:Camera)
+	public function new(?cameras:Array<Camera>)
 	{
 		super("cameraManager");
 
-		cameras = new Map();
-
-		addCamera(camera != null ? camera : new Camera("defaultCamera"));
+		cameras = (cameras != null) ? cameras : [ Camera.DEFAULT ];
 	}
 
 	public function addCamera(camera:Camera):Void
 	{
-		if(currentCamera == null) currentCamera = camera;
-
-		cameras.set(camera.id, camera);
+		cameras.push(camera);
 	}
 
 	public function removeCamera(camera:Camera):Void
 	{
-		cameras.remove(camera.id);
+		cameras.remove(camera);
 	}
 
-	public function setCamera(cameraId:String):Void
+	public function switchCameras(cameraA:String, cameraB):Void
 	{
-		currentCamera = cameras.get(cameraId);
+		//cameraA.active = false;
+		//cameraB.active = true;
 	}
+ 
+	// public function tweenCameras() // TWeen together?
 }
