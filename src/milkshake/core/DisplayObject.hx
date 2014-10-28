@@ -8,8 +8,8 @@ import pixi.DisplayObjectContainer;
 
 class DisplayObject extends Entity
 {
-	public var scene(default, default):Scene;
-
+	public var scene(get, set):Scene;
+	var _scene:Scene;
 	
 	public var scale(default, null):Vector2;
 	public var pivot(default, null):Vector2;
@@ -76,17 +76,30 @@ class DisplayObject extends Entity
 		displayObject.pivot.y = pivot.y;
 
 		displayObject.rotation = rotation;
-		/*
 		
-
-		
-
-		
-
 		displayObject.visible = visible;
 		displayObject.alpha = alpha;
-	*/
+	
 		super.update(delta);
+	}
+
+	public function get_scene():Scene
+	{
+		return _scene;
+	}
+
+	public function set_scene(scene:Scene):Scene
+	{		
+		for(node in nodes)
+		{
+			if (Std.is(node, DisplayObject))
+			{
+				var displayObjectNode:DisplayObject = cast node;
+				displayObjectNode.scene = scene;
+			}
+		}
+
+		return _scene = scene;
 	}
 
 	public function create():Void

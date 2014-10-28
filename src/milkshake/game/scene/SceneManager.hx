@@ -4,6 +4,7 @@ import milkshake.core.DisplayObject;
 import milkshake.game.scene.Scene;
 import pixi.Stage;
 
+// Convert from DisplayObject. Why does SceneManager have "scene"?
 class SceneManager extends DisplayObject
 {
 	public var scenes(default, null):Map<String, Scene>;
@@ -36,6 +37,7 @@ class SceneManager extends DisplayObject
 
 		currentScene = scenes.get(sceneId);
 
+		scene = currentScene;
 		addNode(currentScene);
 	}
 	

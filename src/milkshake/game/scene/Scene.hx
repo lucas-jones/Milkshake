@@ -10,8 +10,8 @@ class Scene extends DisplayObject
 	public function new(?id:String)
 	{
 		super(id);
-
-		cameras = new CameraManager();
+		
+		cameras = new CameraManager();		
 	}
 
 	override public function update(delta:Float):Void
