@@ -2,5 +2,6 @@
 -cp libs
 -cp src
 -lib compiletime
+-lib mconsole
 -D pixijs
 -js app.js
