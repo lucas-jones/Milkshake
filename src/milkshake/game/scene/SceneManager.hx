@@ -2,15 +2,10 @@ package milkshake.game.scene;
 
 import milkshake.core.DisplayObject;
 import milkshake.game.scene.Scene;
-import pixi.Stage;
 
-
-
-// Convert from DisplayObject. Why does SceneManager have "scene"?
 class SceneManager extends DisplayObject
 {
 	public var scenes(default, null):Map<String, Scene>;
-
 	public var currentScene(default, null):Scene;
 	
 	public function new() 
@@ -23,7 +18,7 @@ class SceneManager extends DisplayObject
 	public function addScene(scene:Scene):Void
 	{
 		scenes.set(scene.id, scene);
-		
+
 		// Default Scene
 		if (currentScene == null) changeScene(scene.id);
 	}
@@ -35,21 +30,19 @@ class SceneManager extends DisplayObject
 	
 	public function changeScene(sceneId:String):Void
 	{
-		if(currentScene != null) removeNode(currentScene);
+		if(currentScene != null) removeNode(currentScene.cameras);
 
 		currentScene = scenes.get(sceneId);
 
 		scene = currentScene;
-		addNode(currentScene);
-	}
-	
-	override public function update(deltaTime:Float):Void 
-	{
-		if(currentScene != null) 
-		{
-			currentScene.update(deltaTime);
-		}
 
-		super.update(deltaTime);
+		addNode(currentScene.cameras);
+	}
+
+	override public function update(delta:Float):Void
+	{
+		currentScene.update(delta);
+
+		super.update(delta);
 	}
 }

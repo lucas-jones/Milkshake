@@ -1,29 +1,33 @@
 package milkshake.game.scene.camera;
 
+import milkshake.core.DisplayObject;
 import milkshake.core.Entity;
 import milkshake.core.Node;
+import milkshake.core.Sprite;
+import milkshake.game.scene.camera.Camera;
 
-
-// Array<CameraSettings>  CameraSettings.DEAULT, CameraSettings.
-// Array<Camera>  Camera.DEAULT, CameraSettings.
-// [ new Camera() ]
-
-class CameraManager extends Node /*Scene Component*/
+class CameraManager extends DisplayObject
 {
 	public var cameras(default, null):Array<Camera>;
-	
-	//public var activeCameras(get, null):Array<Camera>;
+	public var activeCameras(get, null):Array<Camera>;
 
 	public function new(?cameras:Array<Camera>)
 	{
 		super("cameraManager");
 
-		cameras = (cameras != null) ? cameras : [ Camera.DEFAULT ];
+		if(cameras == null) cameras = [ CameraPresets.DEFAULT ];
+
+		this.cameras = [];
+
+		for(camera in cameras) addCamera(camera);
 	}
 
-	public function addCamera(camera:Camera):Void
+	public function addCamera(camera:Camera):Camera
 	{
 		cameras.push(camera);
+		addNode(camera);
+
+		return camera;
 	}
 
 	public function removeCamera(camera:Camera):Void
@@ -31,11 +35,17 @@ class CameraManager extends Node /*Scene Component*/
 		cameras.remove(camera);
 	}
 
-	public function switchCameras(cameraA:String, cameraB):Void
+	public function switchCameras(cameraA:Camera, cameraB:Camera):Void
 	{
-		//cameraA.active = false;
-		//cameraB.active = true;
+		cameraA.active = false;
+		cameraB.active = true;
 	}
  
-	// public function tweenCameras() // TWeen together?
+	public function get_activeCameras():Array<Camera>
+	{
+		return cameras.filter(function(camera:Camera):Bool
+		{
+			return camera.active;
+		});
+	}
 }

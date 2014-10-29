@@ -45,21 +45,12 @@ class Scene extends DisplayObject
 {
 	public var cameras(default, null):CameraManager;
 
-	
 	public function new(?id:String, ?defaultCameras:Array<Camera>)
 	{
 		super(id);
 
 		scene = this;
-
+		
 		cameras = new CameraManager(defaultCameras);
-	}
-
-	override public function update(delta:Float):Void
-	{
-		//position.x = -cameras.currentCamera.position.x;
-		//position.y = -cameras.currentCamera.position.y;
-
-		super.update(delta);
 	}
 }

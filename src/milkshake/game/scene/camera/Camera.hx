@@ -7,34 +7,43 @@ import milkshake.utils.Globals;
 
 class Camera extends DisplayObject
 {
-	public static var DEFAULT(get, null):Camera;
-
-	public static function get_DEFAULT():Camera
-	{
-		return new Camera(0, 0, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT);
-	}
-
-	// SplitScreen 2 hora
-	public static var SPLIT_HORIZONTAL(get, null):Array<Camera>;
-
-	public static function get_SPLIT_HORIZONTAL():Array<Camera>
-	{
-		return
-		[
-			new Camera(0, 0, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT / 2),
-			new Camera(0, Globals.SCREEN_WIDTH / 2, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT / 2)
-		]
-	}
+	public var active(default, default):Bool;
 
 	public var width(default, null):Int;
 	public var height(default, null):Int;
 
-	// MAybe take Rectangle. THat way get_DEFAULT = Globals.SCREEN_BOX / Globals.SCREEN / 
-	public function new(x:Int, height:Int, width:Int, height:Int)
+	var renderTexture:pixi.RenderTexture;
+	var renderSprite:pixi.Sprite;
+
+	public function new(x:Int, y:Int, width:Int, height:Int, active:Bool = true)
 	{
 		super();
 
+		this.x = x;
+		this.y = y;
 		this.width = width;
 		this.height = height;
+
+		// Render Width / Height
+		renderTexture = new pixi.RenderTexture(Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT);
+		renderSprite = new pixi.Sprite(renderTexture);
+
+		renderSprite.width = width;
+		renderSprite.height = height;
+
+		displayObject.addChild(renderSprite);
+	}
+
+	override public function update(delta:Float):Void
+	{
+		super.update(delta);
+
+		render();
+	}
+
+	public function render():Void
+	{
+		// Clean dosn't work as expected!?
+		renderTexture.render(scene.displayObject, false);
 	}
 }
