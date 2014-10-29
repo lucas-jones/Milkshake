@@ -5,13 +5,13 @@ import milkshake.utils.Globals;
 
 class CameraPresets 
 {
-	public static var DEFAULT(get, null):Camera;
+	public static var DEFAULT(get, null):Array<Camera>;
 	public static var SPLIT_VERTICAL(get, null):Array<Camera>;
 	public static var SPLIT_FOUR(get, null):Array<Camera>;
 
-	public static function get_DEFAULT():Camera
+	public static function get_DEFAULT():Array<Camera>
 	{
-		return new Camera(0, 0, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT);
+		return [ new Camera(0, 0, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT) ];
 	}
 
 	public static function get_SPLIT_VERTICAL():Array<Camera>

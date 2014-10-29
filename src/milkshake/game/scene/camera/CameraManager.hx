@@ -15,9 +15,9 @@ class CameraManager extends DisplayObject
 	{
 		super("cameraManager");
 
-		if(cameras == null) cameras = [ CameraPresets.DEFAULT ];
+		if(cameras == null) cameras = CameraPresets.DEFAULT;
 
-		this.cameras = [];
+		this.cameras = [ ];
 
 		for(camera in cameras) addCamera(camera);
 	}
