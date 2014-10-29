@@ -30,8 +30,8 @@ class Sprite extends DisplayObject
 		sprite.anchor.x = anchor.x;
 		sprite.anchor.y = anchor.y;
 
-		sprite.width = width;
-		sprite.height = height;
+		// sprite.width = width;
+		// sprite.height = height;
 
 		super.update(delta);
 	}
