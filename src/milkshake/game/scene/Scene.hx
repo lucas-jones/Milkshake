@@ -3,6 +3,7 @@ package milkshake.game.scene;
 import milkshake.core.DisplayObject;
 import milkshake.game.scene.camera.Camera;
 import milkshake.game.scene.camera.CameraManager;
+import milkshake.utils.Globals;
 
 // Having a NetGameObject
 // Which can be serialized easy. Imagine entering a multiplayer mid-game.
@@ -52,5 +53,12 @@ class Scene extends DisplayObject
 		scene = this;
 		
 		cameras = new CameraManager(defaultCameras);
+
+		var background = new pixi.Graphics();
+		
+		untyped background.beginFill(0xFF0000, 1);
+		untyped background.drawRect(0, 0, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT);
+
+		this.displayObject.addChild(background);
 	}
 }
