@@ -10,6 +10,18 @@ import milkshake.utils.Globals;
 // Server -> Client EntireState, Then updates from then on?
 //
 // You would declate how a GameObject is serialized
+//	
+//	//Creates meta data tag for reflection. Variables with the sync meta tag get serialised to
+//	//the specified protocol and synced behind the scenes. Each instance of the class is assigned a
+//	//GUID so that it can be correctly synced across all clients.
+//	@networkObject("sceneObject", JsonPacketHandler)
+//	class Scene extends DisplayObject
+//	{
+//
+//		//This variable will be synced as soon as it is set.
+//		@sync(UpdateRate.High)
+//		private var x:Int;
+//
 //
 //  Entity
 //  [
