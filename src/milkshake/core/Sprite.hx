@@ -21,7 +21,7 @@ class Sprite extends DisplayObject
 
 		this.url = url;
 		this.anchor = Vector2.ZERO;
-
+		
 		displayObject.addChild(sprite = new pixi.Sprite(Texture.fromImage(url)));
 	}
 

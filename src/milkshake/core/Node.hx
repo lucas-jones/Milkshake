@@ -4,6 +4,8 @@ import haxe.exception.Exception;
 import hsl.haxe.direct.DirectSignaler.DirectSignaler;
 import hsl.haxe.Signaler.Signaler;
 
+using Reflect;
+
 class Node
 {
 	public var id:String;
@@ -28,10 +30,19 @@ class Node
 		for(node in nodes) node.update(deltaTime);
 	}
 
-	public function addNode(node:Node):Void
+	public function addNode(node:Node, ?defaultValues:Dynamic):Void
 	{
 		node.parent = this;
 		nodes.push(node);
+
+		if(defaultValues != null)
+		{
+			for(key in defaultValues.fields())
+			{
+				node.setProperty(key, defaultValues.field(key));
+				//node.setField();
+			}
+		}
 
 		onNodeAdded.dispatch(node);
 	}

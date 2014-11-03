@@ -34,7 +34,7 @@ class DisplayObject extends Entity
 		displayObject = new DisplayObjectContainer();
 	}
 	
-	override public function addNode(node:Node):Void 
+	override public function addNode(node:Node, ?defaultValues:Dynamic):Void 
 	{
 		if (Std.is(node, DisplayObject))
 		{
@@ -45,7 +45,7 @@ class DisplayObject extends Entity
 			displayObjectNode.create();
 		}
 		
-		super.addNode(node);
+		super.addNode(node, defaultValues);
 	}
 	
 	override public function removeNode(node:Node):Void 

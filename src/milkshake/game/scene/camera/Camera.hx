@@ -2,12 +2,15 @@ package milkshake.game.scene.camera;
 
 import milkshake.core.DisplayObject;
 import milkshake.core.Entity;
+import milkshake.math.Vector2;
 import milkshake.Milkshake;
 import milkshake.utils.Globals;
 
 class Camera extends DisplayObject
 {
 	public var active(default, default):Bool;
+
+	public var targetPosition:Vector2;
 
 	public var width(default, null):Int;
 	public var height(default, null):Int;
@@ -17,6 +20,8 @@ class Camera extends DisplayObject
 
 	var renderTexture:pixi.RenderTexture;
 	var renderSprite:pixi.Sprite;
+
+	var matrix:pixi.Matrix;
 
 	public function new(x:Int, y:Int, width:Int, height:Int, renderWidth:Int = -1, renderHeight:Int = -1, active:Bool = true)
 	{
@@ -37,6 +42,9 @@ class Camera extends DisplayObject
 		renderSprite.width = width;
 		renderSprite.height = height;
 
+		targetPosition = Vector2.ZERO;
+		matrix = new pixi.Matrix();
+
 		displayObject.addChild(renderSprite);
 	}
 
@@ -48,6 +56,9 @@ class Camera extends DisplayObject
 
 	public function render():Void
 	{
-		untyped renderTexture.render(scene.displayObject, false);
+		matrix.identity();
+		matrix.translate(-targetPosition.x, -targetPosition.y);
+		
+		untyped renderTexture.render(scene.displayObject, matrix, true);
 	}
 }

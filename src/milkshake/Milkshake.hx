@@ -50,6 +50,9 @@ class Milkshake
 	
 	public var scenes(default, null):SceneManager;
 
+	// Temp
+	public var mousePosition(default, null):pixi.Point;
+
 	//public var audio(default, null):AudioEngine;
 	//public var input(default, null):InputEngine;
 	//public var effects(default, null):EffectsEngine;
@@ -58,7 +61,7 @@ class Milkshake
 	{
 		this.settings = settings;
 
-		stage = new Stage(settings.color);
+		stage = new Stage(settings.color, true);
 		scenes = new SceneManager();
 		
 		stage.addChild(scenes.displayObject);
@@ -66,6 +69,7 @@ class Milkshake
 
 	public function update(delta:Float):Void
 	{
-		scenes.update(delta);
+		mousePosition = stage.getMousePosition();
+		scenes.update(delta);		
 	}
 }
