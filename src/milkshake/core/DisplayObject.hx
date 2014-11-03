@@ -14,7 +14,19 @@ class DisplayObject extends Entity
 	public var scale(default, null):Vector2;
 	public var pivot(default, null):Vector2;
 	public var rotation(default, null):Float;
-	
+
+	public var width(get, null):Float;
+	public function get_width():Float
+	{
+		return displayObject.width;
+	}
+
+	public var height(get, null):Float;
+	public function get_height():Float
+	{
+		return displayObject.height;
+	}
+
 	public var visible(default, null):Bool;
 	public var alpha:Float;
 

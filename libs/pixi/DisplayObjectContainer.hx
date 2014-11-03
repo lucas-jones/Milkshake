@@ -10,4 +10,5 @@ extern class DisplayObjectContainer extends DisplayObject {
 
   public var children:DisplayObject;
   public var mask:Graphics;
+  
 }

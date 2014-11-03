@@ -28,4 +28,6 @@ extern class DisplayObject {
   public var scale:Point;
   public var stage:Stage;
   public var visible:Bool;
+  public var width:Float;
+  public var height:Float;
 }

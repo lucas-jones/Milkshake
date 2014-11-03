@@ -12,9 +12,6 @@ class Camera extends DisplayObject
 
 	public var targetPosition:Vector2;
 
-	public var width(default, null):Int;
-	public var height(default, null):Int;
-
 	public var renderWidth(default, null):Int;
 	public var renderHeight(default, null):Int;
 
