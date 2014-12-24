@@ -7,19 +7,27 @@ import pixi.Texture;
 
 class Sprite extends DisplayObject
 {
-	var url:String;
+	public static function fromUrl(url:String):Sprite
+	{
+		return new Sprite(Texture.fromImage(url));
+	}
+
+	public static function fromFrame(frame:String):Sprite
+	{
+		return new Sprite(Texture.fromFrame(frame));
+	}
+
 	var sprite(default, null):pixi.Sprite;
 
 	public var anchor(default, default):Vector2;
 	
-	public function new(url:String, id:String="undefined-sprite")
+	public function new(texture:Texture, id:String="undefined-sprite")
 	{
 		super(id);
 
-		this.url = url;
 		this.anchor = Vector2.ZERO;
-		
-		displayObject.addChild(sprite = new pixi.Sprite(Texture.fromImage(url)));
+
+		displayObject.addChild(sprite = new pixi.Sprite(texture));
 	}
 
 	override public function update(delta:Float):Void

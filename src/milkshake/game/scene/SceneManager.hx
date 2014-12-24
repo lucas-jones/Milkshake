@@ -36,12 +36,29 @@ class SceneManager extends DisplayObject
 
 		scene = currentScene;
 
-		addNode(currentScene.cameras);
+		if(currentScene.loader.loaded)
+		{
+			currentScene.create();
+			addNode(currentScene.cameras);
+		}
+		else
+		{
+			currentScene.loader.onLoadComplete.bindVoid(function()
+			{
+				currentScene.create();
+				addNode(currentScene.cameras);
+			}).destroyOnUse();
+
+			currentScene.loader.load();
+		}		
 	}
 
 	override public function update(delta:Float):Void
 	{
-		currentScene.update(delta);
+		if(currentScene.loader.loaded) 
+		{
+			currentScene.update(delta);
+		}
 
 		super.update(delta);
 	}

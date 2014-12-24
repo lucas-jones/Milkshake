@@ -3,9 +3,11 @@ package milkshake.assets;
 #if macro
 import haxe.macro.Context;
 import haxe.macro.Expr;
-import milkshake.components.assets.SpriteSheetAsset;
+import milkshake.assets.SpriteSheetAsset;
 import sys.FileSystem;
 import sys.io.File;
+
+using StringTools;
 
 class SpriteSheetsBuilder 
 {
@@ -50,7 +52,7 @@ class SpriteSheetsFile
 	public function new(fileName:String, directory:String)
 	{
 		this.name = fileName.split(".")[0].toUpperCase();
-		this.value = File.getContent(directory + "/" + fileName);
+		this.value = directory.replace("bin", "") + fileName;
 	}
 }
 #end
