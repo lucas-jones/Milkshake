@@ -21,12 +21,8 @@ class Graphics extends DisplayObject
 	override public function update(delta:Float):Void
 	{
 		super.update(delta);
-
-		// Cache?
-
-		untyped graphics.updateBounds();
-
-		untyped displayObject.pivot.x = graphics.width - ((1 - anchor.x) * graphics.width);
-		untyped displayObject.pivot.y = graphics.height - ((1 - anchor.y) * graphics.height);
+		
+		displayObject.pivot.x = graphics.width - ((1 - anchor.x) * graphics.width);
+		displayObject.pivot.y = graphics.height - ((1 - anchor.y) * graphics.height);
 	}
 }
