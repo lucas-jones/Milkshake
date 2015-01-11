@@ -16,7 +16,7 @@ class AssetLoader
 	public function new(urls:Array<String>, autoLoad:Bool = false)
 	{
 		loader = new pixi.AssetLoader(urls);
-		loaded = false;
+		loaded = urls.length == 0;
 
 		onLoadStarted = new DirectSignaler(this);
 		onLoadUpdate = new DirectSignaler(this);
