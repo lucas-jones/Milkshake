@@ -1,12 +1,28 @@
 package milkshake.utils;
 
 import milkshake.core.Entity;
+import motion.Actuate;
 import motion.actuators.IGenericActuator;
 
 class TweenUtils
 {
 	public static inline function tween(target:Entity, duration:Float, properties:Dynamic):IGenericActuator
 	{
-		return motion.Actuate.tween(target, duration, properties);
+		return Actuate.tween(target, duration, properties);
+	}
+
+	public static inline function tweenFrom(target:Entity, duration:Float, properties:Dynamic):IGenericActuator
+	{
+		var currentVariables = {};
+
+		for(property in Reflect.fields(properties)) {
+			Reflect.setField(currentVariables, property, Reflect.getProperty(target, property));
+		}
+
+		for(property in Reflect.fields(properties)) {
+			Reflect.setProperty(target, property, Reflect.field(properties, property));
+		}		
+
+		return Actuate.tween(target, duration, currentVariables);
 	}
 }
