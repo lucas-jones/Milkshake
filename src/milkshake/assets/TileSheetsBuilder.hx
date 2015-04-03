@@ -8,33 +8,33 @@ import sys.io.File;
 
 using StringTools;
 
-class SpriteSheetsBuilder 
+class TileSheetsBuilder 
 {
 	public static function build(directory:String):Array<Field>
 	{
-		var spriteSheets:Array<SpriteSheetsFile> = [];
+		var tileSheets:Array<TileSheetsFile> = [];
 
 		var fileNames = FileSystem.readDirectory(directory);
 
 		for (fileName in fileNames)
 		{
-			if (!FileSystem.isDirectory(directory + fileName) && fileName.indexOf(".json") != -1)
+			if (!FileSystem.isDirectory(directory + fileName) && fileName.indexOf(".png") != -1)
 			{
 				// push filenames in list. 
-				spriteSheets.push(new SpriteSheetsFile(fileName, directory));
+				tileSheets.push(new TileSheetsFile(fileName, directory));
 			}
 		}
 		
 		var fields:Array<Field> = Context.getBuildFields();
 
-		for (spriteSheet in spriteSheets)
+		for (tileSheet in tileSheets)
 		{
 			fields.push(
 			{
-				name: spriteSheet.name,
+				name: tileSheet.name,
 				doc: "None",
 				access: [ Access.APublic, Access.AStatic ],
-				kind: FVar(macro:String, macro $v{spriteSheet.value}),
+				kind: FVar(macro:String, macro $v{tileSheet.value}),
 				pos: Context.currentPos()
 			});
 		}
@@ -43,7 +43,7 @@ class SpriteSheetsBuilder
 	}
 }
 
-class SpriteSheetsFile
+class TileSheetsFile
 {
 	public var name:String;
 	public var value:String;
