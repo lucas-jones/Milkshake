@@ -2,7 +2,6 @@ package milkshake.game.tile;
 
 import milkshake.core.DisplayObject;
 import milkshake.game.tile.TileMapRenderer;
-import milkshake.game.tile.renderers.BasicTileMapRenderer;
 import milkshake.game.tile.TileMapData;
 
 class TileMap extends DisplayObject

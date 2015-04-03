@@ -26,6 +26,7 @@ class TileMapData
 	}
 
 	public var data(default, null):Array<Array<Int>>;
+
 	public var width(default, null):Int;
 	public var height(default, null):Int;
 
