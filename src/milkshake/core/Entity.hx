@@ -6,7 +6,17 @@ import milkshake.math.Vector2;
 
 class Entity extends Node
 {
-	public var position(default, null):Vector2;
+	@:isVar public var position(get, set):Vector2;
+
+	function get_position():Vector2
+	{
+		return position;
+	}
+
+	function set_position(value:Vector2):Vector2
+	{
+		return position = value;
+	}
 	
 	public function new(?id:String)
 	{

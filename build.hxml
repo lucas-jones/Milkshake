@@ -3,6 +3,7 @@
 -cp src
 -lib compiletime
 -lib mconsole
+-lib nape
 -D pixijs
 -dce full 
 -js app.js
