@@ -45,11 +45,14 @@ class BasicTileMapRenderer extends TileMapRenderer
 			{
 				var index = tileMapData.data[y][x];
 
-				addNode(new Sprite(tiles[index]),
+				if(index > 0)
 				{
-					x: x * tileSize,
-					y: y * tileSize
-				});
+					addNode(new Sprite(tiles[index]),
+					{
+						x: x * tileSize,
+						y: y * tileSize
+					});
+				}
 			}
 		}
 	}
