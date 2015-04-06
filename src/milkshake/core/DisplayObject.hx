@@ -38,7 +38,7 @@ class DisplayObject extends Entity
 		super(id);
 
 		scale = Vector2.ONE;
-		pivot = Vector2.ONE;
+		pivot = Vector2.ZERO;
 		rotation = 0;
 
 		visible = true;
