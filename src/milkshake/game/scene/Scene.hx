@@ -3,6 +3,7 @@ package milkshake.game.scene;
 import hsl.haxe.Signal;
 import milkshake.assets.loader.AssetLoader;
 import milkshake.core.DisplayObject;
+import milkshake.core.Graphics;
 import milkshake.game.scene.camera.Camera;
 import milkshake.game.scene.camera.CameraManager;
 import milkshake.utils.Color;
@@ -30,6 +31,6 @@ class Scene extends DisplayObject
 
 	override public function create():Void
 	{
-		addNode(GraphicsHelper.generateRectangle(Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT, clearColor));	
+		addNode(GraphicsHelper.generateRectangle(Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT, clearColor));
 	}
 }

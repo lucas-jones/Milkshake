@@ -2,15 +2,22 @@ package milkshake.game.scene.camera;
 
 import milkshake.core.DisplayObject;
 import milkshake.core.Entity;
+import milkshake.core.Graphics;
+import milkshake.core.Text;
 import milkshake.math.Vector2;
 import milkshake.Milkshake;
 import milkshake.utils.Globals;
+import milkshake.utils.GraphicsHelper;
+import pixi.Rectangle;
 
 class Camera extends DisplayObject
 {
 	public var active(default, default):Bool;
 
 	public var targetPosition:Vector2;
+	public var targetZoom:Float;
+
+	public var boundingBox:Rectangle;
 
 	public var renderWidth(default, null):Int;
 	public var renderHeight(default, null):Int;
@@ -34,6 +41,8 @@ class Camera extends DisplayObject
 
 		this.active = active;
 
+		boundingBox = new Rectangle(0, 0, 1, 1);
+
 		// Render Width / Height
 		renderTexture = new pixi.RenderTexture(renderWidth, renderHeight);
 		renderSprite = new pixi.Sprite(renderTexture);
@@ -42,6 +51,8 @@ class Camera extends DisplayObject
 		renderSprite.height = height;
 
 		targetPosition = Vector2.ZERO;
+		targetZoom = 1;
+
 		matrix = new pixi.Matrix();
 
 		displayObject.addChild(renderSprite);
@@ -49,13 +60,32 @@ class Camera extends DisplayObject
 
 	override public function update(delta:Float):Void
 	{
-		matrix.identity();
-		matrix.translate(-targetPosition.x, -targetPosition.y);
-		
+		updateBoundingBox();
+
+		// We call render on displayTree to allow objects to cull
 		scene.render(this);
+
+		// Play that funky matrix music!
+		matrix.identity();
+		matrix.translate(-targetPosition.x, -targetPosition.y);		
+		matrix.scale(targetZoom, targetZoom);	
+		matrix.translate(width / 2, height / 2);
 
 		untyped renderTexture.render(scene.displayObject, matrix, true);
 
+		//matrix.identity();
+		//untyped renderTexture.render(this.displayObject, matrix, false);
+
 		super.update(delta);
+	}
+
+	function updateBoundingBox():Void
+	{
+		var debugPadding = 80;
+
+		boundingBox.x = targetPosition.x - (width / 2) + debugPadding;
+		boundingBox.y = targetPosition.y - (height / 2) + debugPadding;
+		boundingBox.width = width - (debugPadding * 2);
+		boundingBox.height = height - (debugPadding * 2);
 	}
 }

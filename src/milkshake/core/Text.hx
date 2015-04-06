@@ -1,19 +1,21 @@
 package milkshake.core;
-import pixi.DisplayObject;
+
+import milkshake.core.DisplayObject;
 import pixi.DisplayObjectContainer;
 
-class Text extends Sprite
+class Text extends DisplayObject
 {
-	public function new(text:String, id:String="undefined-text") 
+	var text:pixi.Text;
+
+	public function new(message:String)
 	{
-		super("", id);
-		displayObject.addChild(sprite = new pixi.Text(text));
+		super();
+
+		displayObject.addChild(text = new pixi.Text(message));
 	}
 	
-	public function setText(text:String)
+	public function setText(message:String)
 	{
-		var textObject:Text = cast sprite;
-		textObject.setText(text);
-	}
-	
+		text.setText(message);
+	}	
 }

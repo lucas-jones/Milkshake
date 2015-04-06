@@ -17,12 +17,8 @@ class TileMap extends DisplayObject
 		this.renderer = renderer;
 
 		super();
-	}
 
-	override public function create():Void
-	{
 		renderer.setup(tileMapData);
-
 		addNode(renderer);
 	}
 }

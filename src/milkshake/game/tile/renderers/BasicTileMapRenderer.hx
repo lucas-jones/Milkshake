@@ -53,11 +53,4 @@ class BasicTileMapRenderer extends TileMapRenderer
 			}
 		}
 	}
-
-	override public function render(camera:Camera):Void
-	{
-		Console.log("TileMapRenderer Camera: " + camera.id);
-
-		super.render(camera);		
-	}
 }

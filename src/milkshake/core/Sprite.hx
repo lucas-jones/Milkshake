@@ -1,6 +1,7 @@
 package milkshake.core;
 
 import milkshake.core.DisplayObject;
+import milkshake.game.scene.camera.Camera;
 import milkshake.math.Vector2;
 import pixi.BaseTexture;
 import pixi.Texture;
@@ -39,5 +40,11 @@ class Sprite extends DisplayObject
 		// sprite.height = height;
 
 		super.update(delta);
+	}
+
+	override public function render(camera:Camera):Void
+	{
+		visible = (camera.boundingBox.x < this.x + this.width) && (camera.boundingBox.x + camera.boundingBox.width > this.x) &&
+			 	  (camera.boundingBox.y < this.y + this.height) && (camera.boundingBox.y + camera.boundingBox.height > this.y);
 	}
 }
