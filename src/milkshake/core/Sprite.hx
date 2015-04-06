@@ -44,7 +44,9 @@ class Sprite extends DisplayObject
 
 	override public function render(camera:Camera):Void
 	{
-		visible = (camera.boundingBox.x < this.x + this.width) && (camera.boundingBox.x + camera.boundingBox.width > this.x) &&
-			 	  (camera.boundingBox.y < this.y + this.height) && (camera.boundingBox.y + camera.boundingBox.height > this.y);
+		/* Calling width / height on sprite slow!
+		visible = (camera.boundingBox.x < this.x + 24) && (camera.boundingBox.x + camera.boundingBox.width > this.x) &&
+			 	  (camera.boundingBox.y < this.y + 24) && (camera.boundingBox.y + camera.boundingBox.height > this.y);
+		*/
 	}
 }
