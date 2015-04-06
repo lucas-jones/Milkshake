@@ -1,29 +1,50 @@
 package milkshake.game.tile;
 
-import hxcollision.shapes.Polygon;
-import hxcollision.shapes.Shape;
+import milkshake.core.DisplayObject;
+import milkshake.core.Graphics;
 import milkshake.game.tile.TileMapData;
+import milkshake.utils.Color;
+import pixi.Rectangle;
 
-class TileMapCollision
+class TileMapCollision extends DisplayObject
 {
-	var tileShapes:Array<Shape>;
+	var rectangles:Array<Rectangle>;
+	var graphics:Graphics;
 
 	public function new(tileMapData:TileMapData, tileSize:Int)
 	{
+		super();
+
+		rectangles = [];
+
 		for (x in 0 ... tileMapData.width)
 		{
 			for (y in 0 ... tileMapData.height)
 			{
-				tileShapes.push(Polygon.rectangle(x * tileSize, y * tileSize, tileSize, tileSize);
+				var index = tileMapData.data[y][x];
+
+				if(index > 0)
+				{
+					rectangles.push(new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize));
+				}
 			}
 		}
+
+		addNode(graphics = new Graphics());
 	}
 
-	public function update()
+	override public function update(deltaTime:Float):Void
 	{
-		for(shapes in tileShapes)
-		{
-			
+		graphics.clear();
+		graphics.begin(Color.RED, 0.1, 1, Color.RED);
+
+		graphics.graphics.drawRect(0, 0, 10, 10);
+
+		for(rectangle in rectangles)
+		{	
+			graphics.drawRectangle(rectangle);
 		}
+
+		super.update(deltaTime);
 	}
 }
