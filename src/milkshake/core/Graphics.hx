@@ -2,6 +2,8 @@ package milkshake.core;
 
 import milkshake.core.DisplayObject;
 import milkshake.math.Vector2;
+import milkshake.utils.Color;
+import pixi.Rectangle;
 
 class Graphics extends DisplayObject
 {
@@ -16,6 +18,22 @@ class Graphics extends DisplayObject
 		this.anchor = Vector2.ZERO;
 
 		displayObject.addChild(graphics = new pixi.Graphics());
+	}
+
+	public function clear():Void
+	{
+		graphics.clear();
+	}
+
+	public function begin(color:Int, alpha:Float = 1, lineWidth:Float = 0, lineColor:Int = Color.WHITE)
+	{
+		graphics.beginFill(color, alpha);
+		graphics.lineStyle(lineWidth, lineColor);
+	}
+
+	public function drawRectangle(rectangle:Rectangle, ?fill:Int):Void
+	{
+		graphics.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 	}
 
 	override public function update(delta:Float):Void
