@@ -11,15 +11,15 @@ class CameraPresets
 
 	public static function get_DEFAULT():Array<Camera>
 	{
-		return [ new Camera(0, 0, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT) ];
+		return [ new Camera("MAIN", 0, 0, Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT) ];
 	}
 
 	public static function get_SPLIT_VERTICAL():Array<Camera>
 	{
 		return
 		[
-			new Camera(0, 0, Std.int(Globals.SCREEN_WIDTH / 2), Globals.SCREEN_HEIGHT),
-			new Camera(Std.int(Globals.SCREEN_WIDTH / 2), 0, Std.int(Globals.SCREEN_WIDTH / 2), Globals.SCREEN_HEIGHT)
+			new Camera("TOP", 0, 0, Std.int(Globals.SCREEN_WIDTH / 2), Globals.SCREEN_HEIGHT),
+			new Camera("BOTTOM", Std.int(Globals.SCREEN_WIDTH / 2), 0, Std.int(Globals.SCREEN_WIDTH / 2), Globals.SCREEN_HEIGHT)
 		];
 	}
 
@@ -30,10 +30,10 @@ class CameraPresets
 
 		return
 		[
-			new Camera(0, 0, screenWidth, screenHeight),
-			new Camera(screenWidth, 0, screenWidth, screenHeight),
-			new Camera(0, screenHeight, screenWidth, screenHeight),
-			new Camera(screenWidth, screenHeight, screenWidth, screenHeight)
+			new Camera("TOP_LEFT", 0, 0, screenWidth, screenHeight),
+			new Camera("TOP_RIGHT", screenWidth, 0, screenWidth, screenHeight),
+			new Camera("BOTTOM_LEFT", 0, screenHeight, screenWidth, screenHeight),
+			new Camera("BOTTOM_RIGHT", screenWidth, screenHeight, screenWidth, screenHeight)
 		];
 	}
 }

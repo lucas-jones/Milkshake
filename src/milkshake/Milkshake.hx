@@ -1,6 +1,10 @@
 package milkshake;
 
+import js.Browser;
 import milkshake.game.scene.SceneManager;
+import milkshake.utils.RAFHelper;
+import pixi.IRenderer;
+import pixi.Pixi;
 import pixi.Stage;
 
 class Settings
@@ -46,6 +50,9 @@ class Milkshake
 	}
 
 	public var settings(default, null):Settings; // HAve getters for properties inside json
+	public var renderer(default, null):IRenderer;
+	public var raf(default, null):RAFHelper;
+
 	public var stage(default, null):Stage;
 	
 	public var scenes(default, null):SceneManager;
@@ -61,6 +68,12 @@ class Milkshake
 	{
 		this.settings = settings;
 
+		renderer = Pixi.autoDetectRenderer(settings.width, settings.height, Browser.document.getElementById('canvas'));
+		Browser.document.body.appendChild(renderer.view);
+
+		raf = new RAFHelper(update);
+		raf.start();
+
 		stage = new Stage(settings.color, true);
 		scenes = new SceneManager();
 		
@@ -70,6 +83,8 @@ class Milkshake
 	public function update(delta:Float):Void
 	{
 		mousePosition = stage.getMousePosition();
-		scenes.update(delta);		
+		scenes.update(delta);
+
+		renderer.render(stage);
 	}
 }

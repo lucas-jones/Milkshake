@@ -11,6 +11,8 @@ class CameraManager extends DisplayObject
 	public var cameras(default, null):Array<Camera>;
 	public var activeCameras(get, null):Array<Camera>;
 
+	public var currentCamera(default, null):Camera;
+
 	public function new(?cameras:Array<Camera>)
 	{
 		super("cameraManager");
@@ -27,6 +29,8 @@ class CameraManager extends DisplayObject
 		cameras.push(camera);
 		addNode(camera);
 
+		currentCamera = camera;
+
 		return camera;
 	}
 
@@ -39,6 +43,15 @@ class CameraManager extends DisplayObject
 	{
 		cameraA.active = false;
 		cameraB.active = true;
+	}
+
+	override public function update(deltaTime:Float):Void
+	{
+		for(camera in activeCameras)
+		{
+			currentCamera = camera;
+			camera.update(deltaTime);
+		}
 	}
  
 	public function get_activeCameras():Array<Camera>

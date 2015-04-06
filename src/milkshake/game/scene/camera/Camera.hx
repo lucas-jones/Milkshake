@@ -20,9 +20,9 @@ class Camera extends DisplayObject
 
 	var matrix:pixi.Matrix;
 
-	public function new(x:Int, y:Int, width:Int, height:Int, renderWidth:Int = -1, renderHeight:Int = -1, active:Bool = true)
+	public function new(id:String, x:Int, y:Int, width:Int, height:Int, renderWidth:Int = -1, renderHeight:Int = -1, active:Bool = true)
 	{
-		super();
+		super(id);
 
 		if(renderWidth == -1) renderWidth = Globals.SCREEN_WIDTH;
 		if(renderHeight == -1) renderHeight = Globals.SCREEN_HEIGHT;
@@ -31,6 +31,8 @@ class Camera extends DisplayObject
 		this.y = y;
 		this.width = width;
 		this.height = height;
+
+		this.active = active;
 
 		// Render Width / Height
 		renderTexture = new pixi.RenderTexture(renderWidth, renderHeight);
@@ -47,15 +49,13 @@ class Camera extends DisplayObject
 
 	override public function update(delta:Float):Void
 	{
-		render();
-		super.update(delta);	
-	}
-
-	public function render():Void
-	{
 		matrix.identity();
 		matrix.translate(-targetPosition.x, -targetPosition.y);
 		
+		scene.render(this);
+
 		untyped renderTexture.render(scene.displayObject, matrix, true);
+
+		super.update(delta);
 	}
 }

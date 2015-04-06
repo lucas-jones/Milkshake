@@ -2,6 +2,7 @@ package milkshake.game.tile.renderers;
 
 import mconsole.Console;
 import milkshake.core.Sprite;
+import milkshake.game.scene.camera.Camera;
 import milkshake.game.tile.TileMapRenderer;
 import milkshake.game.tile.TileMapData;
 import pixi.BaseTexture;
@@ -34,8 +35,6 @@ class BasicTileMapRenderer extends TileMapRenderer
 				tiles.push(new Texture(tileSheet, new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
 			}
 		}
-
-		Console.log(horizontalTile + " " + verticalTile + " = " + tiles.length);
 	}
 
 	override public function setup(tileMapData:TileMapData):Void
@@ -55,8 +54,10 @@ class BasicTileMapRenderer extends TileMapRenderer
 		}
 	}
 
-	override public function render(x:Float, y:Float):Void
+	override public function render(camera:Camera):Void
 	{
-		
+		Console.log("TileMapRenderer Camera: " + camera.id);
+
+		super.render(camera);		
 	}
 }

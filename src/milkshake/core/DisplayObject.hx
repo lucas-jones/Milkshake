@@ -2,6 +2,7 @@ package milkshake.core;
 
 import milkshake.core.Node;
 
+import milkshake.game.scene.camera.Camera;
 import milkshake.game.scene.Scene;
 import milkshake.math.Vector2;
 import pixi.DisplayObjectContainer;
@@ -93,6 +94,19 @@ class DisplayObject extends Entity
 		displayObject.alpha = alpha;
 	
 		super.update(delta);
+	}
+
+	public function render(camera:Camera):Void
+	{
+		for(node in nodes)
+		{
+			if (Std.is(node, DisplayObject))
+			{
+				var displayObjectNode:DisplayObject = cast node;
+
+				displayObjectNode.render(camera);
+			}
+		}
 	}
 
 	public function get_scene():Scene

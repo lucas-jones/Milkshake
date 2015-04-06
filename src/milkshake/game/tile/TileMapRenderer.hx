@@ -1,6 +1,7 @@
 package milkshake.game.tile;
 
 import milkshake.core.DisplayObject;
+import milkshake.game.scene.camera.Camera;
 import milkshake.game.tile.TileMapData;
 
 class TileMapRenderer extends DisplayObject
@@ -15,10 +16,5 @@ class TileMapRenderer extends DisplayObject
 	public function setup(tileMapData:TileMapData):Void
 	{
 		this.tileMapData = tileMapData;
-	}
-
-	public function render(x:Float, y:Float):Void
-	{
-
 	}
 }
