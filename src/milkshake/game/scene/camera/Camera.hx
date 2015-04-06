@@ -8,6 +8,7 @@ import milkshake.math.Vector2;
 import milkshake.Milkshake;
 import milkshake.utils.Globals;
 import milkshake.utils.GraphicsHelper;
+import pixi.Point;
 import pixi.Rectangle;
 
 class Camera extends DisplayObject
@@ -31,26 +32,25 @@ class Camera extends DisplayObject
 	{
 		super(id);
 
-		if(renderWidth == -1) renderWidth = Globals.SCREEN_WIDTH;
-		if(renderHeight == -1) renderHeight = Globals.SCREEN_HEIGHT;
-
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.renderWidth = (renderWidth != -1) ? renderWidth : Globals.SCREEN_WIDTH;
+		this.renderHeight = (renderHeight != -1) ? renderHeight : Globals.SCREEN_HEIGHT;
 
 		this.active = active;
 
 		boundingBox = new Rectangle(0, 0, 1, 1);
 
 		// Render Width / Height
-		renderTexture = new pixi.RenderTexture(renderWidth, renderHeight);
+		renderTexture = new pixi.RenderTexture(this.renderWidth, this.renderHeight);
 		renderSprite = new pixi.Sprite(renderTexture);
 
 		renderSprite.width = width;
 		renderSprite.height = height;
 
-		targetPosition = Vector2.ZERO;
+		targetPosition = new Vector2(width, height).multi(Vector2.HALF);
 		targetZoom = 1;
 
 		matrix = new pixi.Matrix();
@@ -60,32 +60,29 @@ class Camera extends DisplayObject
 
 	override public function update(delta:Float):Void
 	{
-		updateBoundingBox();
-
-		// We call render on displayTree to allow objects to cull
-		scene.render(this);
-
 		// Play that funky matrix music!
 		matrix.identity();
 		matrix.translate(-targetPosition.x, -targetPosition.y);		
 		matrix.scale(targetZoom, targetZoom);	
 		matrix.translate(width / 2, height / 2);
 
-		untyped renderTexture.render(scene.displayObject, matrix, true);
+		updateBoundingBox();
+		scene.render(this);
 
-		//matrix.identity();
-		//untyped renderTexture.render(this.displayObject, matrix, false);
+		untyped renderTexture.render(scene.displayObject, matrix, true);
 
 		super.update(delta);
 	}
 
-	function updateBoundingBox():Void
+	public function updateBoundingBox():Void
 	{
-		var debugPadding = 80;
+		var topLeft = matrix.applyInverse(new Point(0, 0));
+		var bottomRight = matrix.applyInverse(new Point(renderWidth, renderHeight));
 
-		boundingBox.x = targetPosition.x - (width / 2) + debugPadding;
-		boundingBox.y = targetPosition.y - (height / 2) + debugPadding;
-		boundingBox.width = width - (debugPadding * 2);
-		boundingBox.height = height - (debugPadding * 2);
+		boundingBox.x = topLeft.x;
+		boundingBox.y = topLeft.y;
+
+		boundingBox.width = bottomRight.x - topLeft.x;
+		boundingBox.height = bottomRight.y - topLeft.y;
 	}
 }

@@ -35,15 +35,19 @@ class Vector2
 		this.y = y;
 	}
 
-	public function multi(value:Vector2):Void
+	public function multi(value:Vector2):Vector2
 	{
 		x *= value.x;
 		y *= value.y;
+
+		return this;
 	}
 
-	public function add(value:Vector2):Void
+	public function add(value:Vector2):Vector2
 	{
 		x += value.x;
 		y += value.y;
+
+		return this;
 	}
 }
