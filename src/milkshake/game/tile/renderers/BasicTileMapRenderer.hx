@@ -7,10 +7,12 @@ import milkshake.game.tile.TileMapRenderer;
 import milkshake.game.tile.TileMapData;
 import pixi.BaseTexture;
 import pixi.Rectangle;
+import pixi.SpriteBatch;
 import pixi.Texture;
 
 class BasicTileMapRenderer extends TileMapRenderer
 {
+	var spriteBatch:SpriteBatch;
 	var tileSheet:BaseTexture;
 	var tileSize:Int;
 
@@ -35,6 +37,8 @@ class BasicTileMapRenderer extends TileMapRenderer
 				tiles.push(new Texture(tileSheet, new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize)));
 			}
 		}
+
+		displayObject.addChild(spriteBatch = new SpriteBatch());
 	}
 
 	override public function setup(tileMapData:TileMapData):Void
@@ -47,11 +51,12 @@ class BasicTileMapRenderer extends TileMapRenderer
 
 				if(index > 0)
 				{
-					addNode(new Sprite(tiles[index]),
-					{
-						x: x * tileSize,
-						y: y * tileSize
-					});
+					var pixiSprite = new pixi.Sprite(tiles[index]);
+
+					pixiSprite.position.x = x * tileSize;
+					pixiSprite.position.y = y * tileSize;
+
+					spriteBatch.addChild(pixiSprite);
 				}
 			}
 		}
