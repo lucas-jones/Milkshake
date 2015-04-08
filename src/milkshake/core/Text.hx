@@ -7,7 +7,7 @@ class Text extends DisplayObject
 {
 	var text:pixi.Text;
 
-	public function new(message:String)
+	public function new(message:String = "")
 	{
 		super();
 
