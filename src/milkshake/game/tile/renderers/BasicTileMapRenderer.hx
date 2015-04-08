@@ -61,4 +61,14 @@ class BasicTileMapRenderer extends TileMapRenderer
 			}
 		}
 	}
+
+	override public function render(camera:Camera):Void
+	{
+		super.render(camera);
+
+		for(child in spriteBatch.children)
+		{
+			child.visible = child.position.y > camera.boundingBox.y - 24 && child.position.y < camera.boundingBox.y + camera.boundingBox.height;
+		}
+	}
 }
