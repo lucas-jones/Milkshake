@@ -6,4 +6,6 @@ import pixi.DisplayObjectContainer;
 extern class SpriteBatch extends DisplayObjectContainer
 {
 	function new(?texture:Dynamic);	
+
+	function _renderCanvas(renderSession:Dynamic):Void;
 }

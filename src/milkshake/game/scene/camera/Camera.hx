@@ -23,6 +23,8 @@ class Camera extends DisplayObject
 	public var renderWidth(default, null):Int;
 	public var renderHeight(default, null):Int;
 
+	public var debug:Text;
+
 	var renderTexture:pixi.RenderTexture;
 	var renderSprite:pixi.Sprite;
 
@@ -56,6 +58,8 @@ class Camera extends DisplayObject
 		matrix = new pixi.Matrix();
 
 		displayObject.addChild(renderSprite);
+
+		debug = new Text("Hello");
 	}
 
 	override public function update(delta:Float):Void
@@ -67,17 +71,31 @@ class Camera extends DisplayObject
 		matrix.translate(width / 2, height / 2);
 
 		updateBoundingBox();
+
+		var startingTime = untyped performance.now();
+
 		scene.render(this);
+		
+		var cullTime = Date.now().getTime() - startingTime;
 
 		untyped renderTexture.render(scene.displayObject, matrix, true);
+		
+		var renderTime = Date.now().getTime() - startingTime - cullTime;
+
+		untyped renderTexture.render(debug.displayObject, null, false);		
+
+		debug.setText('        ${renderTime} - ${cullTime}');
 
 		super.update(delta);
 	}
 
 	public function updateBoundingBox():Void
 	{
-		var topLeft = matrix.applyInverse(new Point(0, 0));
-		var bottomRight = matrix.applyInverse(new Point(renderWidth, renderHeight));
+		var debugPadding = 0;
+
+		// [ToDo] Creating points every frame
+		var topLeft = matrix.applyInverse(new Point(debugPadding, debugPadding));
+		var bottomRight = matrix.applyInverse(new Point(renderWidth - debugPadding, renderHeight - debugPadding));
 
 		boundingBox.x = topLeft.x;
 		boundingBox.y = topLeft.y;
