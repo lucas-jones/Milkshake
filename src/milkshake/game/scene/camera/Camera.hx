@@ -59,7 +59,7 @@ class Camera extends DisplayObject
 
 		displayObject.addChild(renderSprite);
 
-		debug = new Text("Hello");
+		debug = new Text();
 	}
 
 	override public function update(delta:Float):Void
@@ -72,7 +72,7 @@ class Camera extends DisplayObject
 
 		updateBoundingBox();
 
-		var startingTime = untyped performance.now();
+		var startingTime = Date.now().getTime();
 
 		scene.render(this);
 		

@@ -78,9 +78,6 @@ class BoltSpriteBatch extends SpriteBatch
 
         	untyped child.displayObjectUpdateTransform();
            
-            // var childTransform = untyped child.worldTransform;
-
-            //context.fillStyle="#00FF00";
             if(untyped child.index != lastIndex)
             {
             	context.fillStyle = patterns[untyped child.index];
@@ -89,19 +86,7 @@ class BoltSpriteBatch extends SpriteBatch
 
             
             context.fillRect(child.position.x, child.position.y, child.width, child.height);
-			// context.drawImage(texture.baseTexture.source,
-   //                               frame.x,
-   //                               frame.y,
-   //                               24,
-   //                               24,
-   //                               child.position.x,
-   //                               child.position.y,
-   //                               child.width,
-   //                               child.height);
-		
 		}
-
-		//super._renderCanvas(renderSession);
 	}
 }
 

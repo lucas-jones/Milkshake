@@ -63,6 +63,32 @@ class TileMapData
 		return result;
 	}
 
+	public function replace(indexA:Int, indexB:Int):Void
+	{
+		for (y in 0...height)
+		{
+			for (x in 0...width)
+			{
+				var index = data[y][x];
+
+				if(index == indexA) data[y][x] = indexB;
+			}
+		}
+	}
+
+	public function replaceBulk(indexes:Array<Int>, indexB:Int):Void
+	{
+		for (y in 0...height)
+		{
+			for (x in 0...width)
+			{
+				var index = data[y][x];
+
+				if(indexes.indexOf(index) != -1) data[y][x] = indexB;
+			}
+		}
+	}
+
 	public function print():Void
 	{
 		for (y in 0...height)

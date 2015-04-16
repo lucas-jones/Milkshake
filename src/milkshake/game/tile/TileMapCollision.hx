@@ -67,32 +67,32 @@ class TileMapCollision extends DisplayObject
 
 	override public function update(deltaTime:Float):Void
 	{
-		graphics.clear();
-		graphics.begin(Color.RED, 0.1, 1, Color.RED);
+		// graphics.clear();
+		// graphics.begin(Color.RED, 0.1, 1, Color.RED);
 
-		for(rectangle in rectangles)
-		{	
-			for(index in 0 ... rectangle.transformedVertices.length)
-			{
-				var pointA = rectangle.transformedVertices[index];
-				var pointB = index + 1 < rectangle.transformedVertices.length ? rectangle.transformedVertices[index + 1] : rectangle.transformedVertices[0];
+		// for(rectangle in rectangles)
+		// {	
+		// 	for(index in 0 ... rectangle.transformedVertices.length)
+		// 	{
+		// 		var pointA = rectangle.transformedVertices[index];
+		// 		var pointB = index + 1 < rectangle.transformedVertices.length ? rectangle.transformedVertices[index + 1] : rectangle.transformedVertices[0];
 
-				graphics.graphics.moveTo(pointA.x, pointA.y);
-				graphics.graphics.lineTo(pointB.x, pointB.y);
-			}
-		}
+		// 		graphics.graphics.moveTo(pointA.x, pointA.y);
+		// 		graphics.graphics.lineTo(pointB.x, pointB.y);
+		// 	}
+		// }
 
-		//rectangle.x = milkshake.Milkshake.getInstance().mousePosition.x;
-		rectangle.y += 2;// = milkshake.Milkshake.getInstance().mousePosition.y + scene.cameras.activeCameras[0].targetPosition.y - (720 / 2);
+		// //rectangle.x = milkshake.Milkshake.getInstance().mousePosition.x;
+		// rectangle.y += 2;// = milkshake.Milkshake.getInstance().mousePosition.y + scene.cameras.activeCameras[0].targetPosition.y - (720 / 2);
 
-		//var current = Date.now().getTime();
-		var results = hxcollision.Collision.testShapes(rectangle, cast rectangles);
+		// //var current = Date.now().getTime();
+		// var results = hxcollision.Collision.testShapes(rectangle, cast rectangles);
 
-		for(result in results)
-		{
-			rectangle.x += result.separation.x;
-			rectangle.y += result.separation.y;
-		}
+		// for(result in results)
+		// {
+		// 	rectangle.x += result.separation.x;
+		// 	rectangle.y += result.separation.y;
+		// }
 
 		//Console.log((Date.now().getTime() - current) + "ms");
 

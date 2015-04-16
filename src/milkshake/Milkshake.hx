@@ -20,7 +20,7 @@ class Settings
 
 	public var color(default, null):Int;
 
-	public function new(width:Int = 1280, height:Int = 720, color:Int = 0xFFF000)
+	public function new(width:Int = 200, height:Int = 720, color:Int = 0xFFF000)
 	{
 		this.width = width;
 		this.height = height;

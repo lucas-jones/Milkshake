@@ -4,8 +4,8 @@ import milkshake.math.Vector2;
 
 class Globals
 {
-	public static var SCREEN_WIDTH:Int = 1280;
-	public static var SCREEN_HEIGHT:Int = 720;
+	public static var SCREEN_WIDTH:Int = 1024;
+	public static var SCREEN_HEIGHT:Int = 768;
 
 	public static var SCREEN_SIZE(get, never):Vector2;
 	public static function get_SCREEN_SIZE():Vector2
