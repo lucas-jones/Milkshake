@@ -120,14 +120,20 @@ class BoltTileMapRenderer extends TileMapRenderer
 	var tileSheet:BaseTexture;
 	var tileSize:Int;
 
+	var simplify:Bool;
+	var debug:Bool;
+
 	var tiles:Array<Texture>;
 
-	public function new(tileSheet:BaseTexture, tileSize:Int):Void
+	public function new(tileSheet:BaseTexture, tileSize:Int, simplify:Bool = true, debug:Bool = false):Void
 	{
 		super();
 
 		this.tileSheet = tileSheet;
 		this.tileSize = tileSize;
+
+		this.simplify = simplify;
+		this.debug = debug;
 
 		var horizontalTile = Math.floor(tileSheet.width / tileSize);
 		var verticalTile = Math.floor(tileSheet.height / tileSize);
@@ -147,6 +153,8 @@ class BoltTileMapRenderer extends TileMapRenderer
 
 	override public function setup(tileMapData:TileMapData):Void
 	{
+		var startTime = Date.now().getTime();
+
 		var boltTileGrid:Array<Array<BoltTile>> = [];
 		var boltTiles:Array<BoltTile> = [];
 
@@ -171,10 +179,13 @@ class BoltTileMapRenderer extends TileMapRenderer
 			}
 		}
 
-		boltTiles = cast TileMapAlgorithms.simplify(cast boltTileGrid, tileMapData.width, tileMapData.height, tileSize, function(aX, aY, bX, bY):Bool
+		if(simplify)
 		{
-			return tileMapData.data[aY][aX] == tileMapData.data[bY][bX];
-		});
+			boltTiles = cast TileMapAlgorithms.simplify(cast boltTileGrid, tileMapData.width, tileMapData.height, tileSize, function(aX, aY, bX, bY):Bool
+			{
+				return tileMapData.data[aY][aX] == tileMapData.data[bY][bX];
+			});
+		}
 
 		for(tile in boltTiles)
 		{
@@ -187,15 +198,18 @@ class BoltTileMapRenderer extends TileMapRenderer
 
 			spriteBatch.addChild(pixiSprite);
 			
-			// var graphic = new pixi.Graphics();
-			// graphic.beginFill(0x000000, 0);
-			// graphic.lineStyle(2, 0xFF0000);
-			// graphic.drawRect(0, 0, tile.width, tile.height);
+			if(debug)
+			{
+				var graphic = new pixi.Graphics();
+				graphic.beginFill(0x000000, 0);
+				graphic.lineStyle(2, 0xFF0000);
+				graphic.drawRect(0, 0, tile.width, tile.height);
 
-			// graphic.position.x = tile.x;
-			// graphic.position.y = tile.y;
+				graphic.position.x = tile.x;
+				graphic.position.y = tile.y;
 
-			// displayObject.addChild(graphic);
+				displayObject.addChild(graphic);
+			}
 		}
 
 		spriteBatch.children.sort(function(a, b):Int
@@ -205,6 +219,8 @@ class BoltTileMapRenderer extends TileMapRenderer
 
 			return 0;
 		});
+
+		Console.log("Time to build: " + (Date.now().getTime() - startTime) + " Simplify: " + simplify);
 	}
 
 	override public function render(camera:Camera):Void

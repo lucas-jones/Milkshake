@@ -1,5 +1,7 @@
 package milkshake.game.tile;
 
+import milkshake.game.tile.TileMapData;
+
 using StringTools;
 
 class TileMapData
@@ -76,7 +78,7 @@ class TileMapData
 		}
 	}
 
-	public function replaceBulk(indexes:Array<Int>, indexB:Int):Void
+	public function replaceBulk(indexes:Array<Int>, indexB:Int = 0):Void
 	{
 		for (y in 0...height)
 		{
@@ -87,6 +89,42 @@ class TileMapData
 				if(indexes.indexOf(index) != -1) data[y][x] = indexB;
 			}
 		}
+	}
+
+	public function clone():TileMapData
+	{
+		var newData:Array<Array<Int>> = [];
+
+		for (y in 0...height)
+		{
+			newData.push(new Array<Int>());
+
+			for (x in 0...width)
+			{
+				newData[y][x] = data[y][x];
+			}
+		}
+
+		return new TileMapData(newData);
+	}
+
+	public function cut(indexes:Array<Int>):TileMapData
+	{
+		var cutTileMapData = clone();
+
+		for (y in 0...height)
+		{
+			for (x in 0...width)
+			{
+				var index = cutTileMapData.data[y][x];
+
+				if(indexes.indexOf(index) == -1) cutTileMapData.data[y][x] = null;
+			}
+		}
+
+		replaceBulk(indexes);
+
+		return cutTileMapData;
 	}
 
 	public function print():Void

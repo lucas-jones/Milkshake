@@ -70,8 +70,8 @@ class FastTileMapRenderer extends TileMapRenderer
 		x =  camera.boundingBox.x; // + -(camera.boundingBox.x % tileSet.tileSize);
 		y =  camera.boundingBox.y; // + -(camera.targetPosition.y % tileSet.tileSize);
 
-		if(currentXTile != cacheXTile || currentYTile != cacheYTile)
-		{
+		//if(currentXTile != cacheXTile || currentYTile != cacheYTile)
+		//{
 			cacheXTile = currentXTile;
 			cacheYTile = currentYTile;
 
@@ -96,7 +96,7 @@ class FastTileMapRenderer extends TileMapRenderer
 					}
 				}
 			}
-		}
+		//}
 
 	}
 }
