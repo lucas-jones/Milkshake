@@ -60,6 +60,22 @@ class Vector2
 	}
 
 	@:op(A * B)
+	public function add(value:Vector2):Vector2
+	{
+		x += value.x;
+		y += value.y;
+
+		return this;
+	}
+
+	public function sub(value:Vector2):Vector2
+	{
+		x -= value.x;
+		y -= value.y;
+
+		return this;
+	}
+
 	public function multi(value:Vector2):Vector2
 	{
 		return new Vector2(x * value.x, y * value.y);
@@ -71,9 +87,28 @@ class Vector2
 		return new Vector2(x * value, y * value);
 	}
 
-	@:op(A + B)
-	public function add(value:Vector2):Vector2
+	@:op(A * B)
+	@:commutative
+	public static inline function multiplication(a:Vector2, s:Float)
 	{
-		return new Vector2(x + value.x, y + value.y);
+		return new Vector2(a.x * s, a.y * s);
 	}
+	
+	@:op(A / B) 
+	public static inline function devision(a:Vector2, s:Float)
+	{
+		return new Vector2(a.x / s, a.y / s);
+	}
+	
+	@:op(A + B)
+	public static inline function addition(a:Vector2, b:Vector2)
+	{
+		return new Vector2(a.x + b.x, a.y + b.y);
+	}
+	
+	@:op(A - B)
+	public static inline function subtraction(a:Vector2, b:Vector2)
+	{
+		return new Vector2(a.x - b.x, a.y - b.y);
+	}	
 }
