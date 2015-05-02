@@ -1,8 +1,8 @@
 package milkshake.game.collision;
 
-import hxcollision.shapes.Shape;
+import differ.shapes.Shape;
 
 interface ICollidable
 {
-	public var shape(default, null):Shape;
+	public var body(default, null):Shape;
 }

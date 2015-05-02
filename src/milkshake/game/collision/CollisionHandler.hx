@@ -1,6 +1,6 @@
 package milkshake.game.collision;
 
-import hxcollision.shapes.Shape;
+import differ.shapes.Shape;
 
 interface ICollidable
 {
