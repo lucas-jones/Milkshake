@@ -8,8 +8,11 @@ import milkshake.math.Vector2;
 import milkshake.Milkshake;
 import milkshake.utils.Globals;
 import milkshake.utils.GraphicsHelper;
-import pixi.Point;
-import pixi.Rectangle;
+import pixi.core.math.Matrix;
+import pixi.core.math.Point;
+import pixi.core.math.shapes.Rectangle;
+import pixi.core.sprites.Sprite;
+import pixi.core.textures.RenderTexture;
 
 class Camera extends DisplayObject
 {
@@ -23,12 +26,13 @@ class Camera extends DisplayObject
 	public var renderWidth(default, null):Int;
 	public var renderHeight(default, null):Int;
 
-	public var debug:Text;
+	var renderTexture:RenderTexture;
+	var renderSprite:Sprite;
 
-	var renderTexture:pixi.RenderTexture;
-	var renderSprite:pixi.Sprite;
+	var matrix:Matrix;
 
-	var matrix:pixi.Matrix;
+	var topLeft:Point;
+	var bottomRight:Point;
 
 	public function new(id:String, x:Int, y:Int, width:Int, height:Int, renderWidth:Int = -1, renderHeight:Int = -1, active:Bool = true)
 	{
@@ -46,8 +50,8 @@ class Camera extends DisplayObject
 		boundingBox = new Rectangle(0, 0, 1, 1);
 
 		// Render Width / Height
-		renderTexture = new pixi.RenderTexture(this.renderWidth, this.renderHeight);
-		renderSprite = new pixi.Sprite(renderTexture);
+		renderTexture = new RenderTexture(Milkshake.getInstance().renderer, this.renderWidth, this.renderHeight);
+		renderSprite = new Sprite(renderTexture);
 
 		renderSprite.width = width;
 		renderSprite.height = height;
@@ -55,11 +59,12 @@ class Camera extends DisplayObject
 		targetPosition = new Vector2(width, height).multi(Vector2.HALF);
 		targetZoom = 1;
 
-		matrix = new pixi.Matrix();
+		matrix = new Matrix();
 
 		displayObject.addChild(renderSprite);
 
-		debug = new Text();
+		topLeft = new Point(0, 0);
+		bottomRight = new Point(this.renderWidth, this.renderHeight);
 	}
 
 	override public function update(delta:Float):Void
@@ -72,19 +77,9 @@ class Camera extends DisplayObject
 
 		updateBoundingBox();
 
-		var startingTime = Date.now().getTime();
-
 		scene.render(this);
-		
-		var cullTime = Date.now().getTime() - startingTime;
 
 		untyped renderTexture.render(scene.displayObject, matrix, true);
-		
-		var renderTime = Date.now().getTime() - startingTime - cullTime;
-
-		untyped renderTexture.render(debug.displayObject, null, false);		
-
-		debug.setText('        ${renderTime} - ${cullTime}');
 
 		super.update(delta);
 	}
@@ -94,8 +89,8 @@ class Camera extends DisplayObject
 		var debugPadding = 0;
 
 		// [ToDo] Creating points every frame
-		var topLeft = matrix.applyInverse(new Point(debugPadding, debugPadding));
-		var bottomRight = matrix.applyInverse(new Point(renderWidth - debugPadding, renderHeight - debugPadding));
+		var topLeft = matrix.applyInverse(topLeft);
+		var bottomRight = matrix.applyInverse(bottomRight);
 
 		boundingBox.x = topLeft.x;
 		boundingBox.y = topLeft.y;

@@ -3,8 +3,8 @@ package milkshake.core;
 import milkshake.core.DisplayObject;
 import milkshake.game.scene.camera.Camera;
 import milkshake.math.Vector2;
-import pixi.BaseTexture;
-import pixi.Texture;
+import pixi.core.sprites.Sprite;
+import pixi.core.textures.Texture;
 
 class Sprite extends DisplayObject
 {
@@ -15,10 +15,11 @@ class Sprite extends DisplayObject
 
 	public static function fromFrame(frame:String):Sprite
 	{
+
 		return new Sprite(Texture.fromFrame(frame));
 	}
 
-	var sprite(default, null):pixi.Sprite;
+	var sprite(default, null):pixi.core.sprites.Sprite;
 
 	public var anchor(default, default):Vector2;
 	
@@ -28,7 +29,7 @@ class Sprite extends DisplayObject
 
 		this.anchor = Vector2.ZERO;
 
-		displayObject.addChild(sprite = new pixi.Sprite(texture));
+		displayObject.addChild(sprite = new pixi.core.sprites.Sprite(texture));
 	}
 
 	override public function update(delta:Float):Void

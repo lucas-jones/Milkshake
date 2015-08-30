@@ -1,8 +1,8 @@
 package milkshake.game.tile;
 
-import pixi.BaseTexture;
-import pixi.Rectangle;
-import pixi.Texture;
+import pixi.core.math.shapes.Rectangle;
+import pixi.core.textures.BaseTexture;
+import pixi.core.textures.Texture;
 
 class TileSet
 {

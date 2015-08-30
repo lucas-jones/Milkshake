@@ -5,7 +5,7 @@ import milkshake.core.Node;
 import milkshake.game.scene.camera.Camera;
 import milkshake.game.scene.Scene;
 import milkshake.math.Vector2;
-import pixi.DisplayObjectContainer;
+import pixi.core.display.Container;
 
 class DisplayObject extends Entity
 {
@@ -31,7 +31,7 @@ class DisplayObject extends Entity
 	public var visible(default, null):Bool;
 	public var alpha:Float;
 
-	public var displayObject(default, null):DisplayObjectContainer;
+	public var displayObject(default, null):Container;
 
 	public function new(?id:String)
 	{
@@ -44,7 +44,7 @@ class DisplayObject extends Entity
 		visible = true;
 		alpha = 1;
 
-		displayObject = new DisplayObjectContainer();
+		displayObject = new Container();
 	}
 	
 	override public function addNode(node:Node, ?defaultValues:Dynamic):Void 

@@ -1,6 +1,6 @@
 package milkshake.game.tile;
 
-import pixi.Rectangle;
+import pixi.core.math.shapes.Rectangle;
 
 class TileMapAlgorithms 
 {

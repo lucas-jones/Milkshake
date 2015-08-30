@@ -7,7 +7,7 @@ import milkshake.core.Graphics;
 import milkshake.game.tile.TileMapAlgorithms;
 import milkshake.game.tile.TileMapData;
 import milkshake.utils.Color;
-import pixi.Rectangle;
+import pixi.core.math.shapes.Rectangle;
 
 class TileMapCollision extends DisplayObject
 {

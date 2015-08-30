@@ -3,11 +3,11 @@ package milkshake.core;
 import milkshake.core.DisplayObject;
 import milkshake.math.Vector2;
 import milkshake.utils.Color;
-import pixi.Rectangle;
+import pixi.core.math.shapes.Rectangle;
 
 class Graphics extends DisplayObject
 {
-	public var graphics(default, null):pixi.Graphics;
+	public var graphics(default, null):pixi.core.graphics.Graphics;
 
 	public var anchor(default, default):Vector2;
 
@@ -17,7 +17,7 @@ class Graphics extends DisplayObject
 
 		this.anchor = Vector2.ZERO;
 
-		displayObject.addChild(graphics = new pixi.Graphics());
+		displayObject.addChild(graphics = new pixi.core.graphics.Graphics());
 	}
 
 	public function clear():Void

@@ -3,9 +3,8 @@ package milkshake;
 import js.Browser;
 import milkshake.game.scene.SceneManager;
 import milkshake.utils.RAFHelper;
-import pixi.IRenderer;
-import pixi.Pixi;
-import pixi.Stage;
+import pixi.core.display.Container;
+import pixi.core.renderers.SystemRenderer;
 
 class Settings
 {
@@ -50,15 +49,15 @@ class Milkshake
 	}
 
 	public var settings(default, null):Settings; // HAve getters for properties inside json
-	public var renderer(default, null):IRenderer;
+	public var renderer(default, null):SystemRenderer;
 	public var raf(default, null):RAFHelper;
 
-	public var stage(default, null):Stage;
+	public var stage(default, null):Container;
 	
 	public var scenes(default, null):SceneManager;
 
 	// Temp
-	public var mousePosition(default, null):pixi.Point;
+	public var mousePosition(default, null):pixi.core.math.Point;
 
 	//public var audio(default, null):AudioEngine;
 	//public var input(default, null):InputEngine;
@@ -68,13 +67,15 @@ class Milkshake
 	{
 		this.settings = settings;
 
-		renderer = Pixi.autoDetectRenderer(settings.width, settings.height, Browser.document.getElementById('canvas'));
+		//renderer = Pixi.autoDetectRenderer(settings.width, settings.height, Browser.document.getElementById('canvas'));
+		renderer = untyped pixi.core.Pixi.autoDetectRenderer(settings.width, settings.height, { view: cast Browser.document.getElementById('canvas') });
+		
 		Browser.document.body.appendChild(renderer.view);
 
 		raf = new RAFHelper(update);
 		raf.start();
 
-		stage = new Stage(settings.color, true);
+		stage = new Container();
 		scenes = new SceneManager();
 		
 		stage.addChild(scenes.displayObject);
@@ -82,7 +83,7 @@ class Milkshake
 
 	public function update(delta:Float):Void
 	{
-		mousePosition = stage.getMousePosition();
+		//mousePosition = stage.getMousePosition();
 		scenes.update(delta);
 
 		renderer.render(stage);

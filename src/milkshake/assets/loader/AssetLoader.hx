@@ -2,6 +2,10 @@ package milkshake.assets.loader;
 
 import hsl.haxe.DirectSignaler;
 import hsl.haxe.Signaler.Signaler;
+import pixi.loaders.Loader;
+import pixi.loaders.ResourceLoader;
+
+using Lambda;
 
 class AssetLoader
 {
@@ -11,11 +15,13 @@ class AssetLoader
 
 	public var loaded(default, null):Bool;
 
-	var loader:pixi.AssetLoader;
+	var loader:Loader;
 
 	public function new(urls:Array<String>, autoLoad:Bool = false)
 	{
-		loader = new pixi.AssetLoader(urls);
+		loader = new Loader();
+		for(url in urls) loader.add(url, url);
+
 		loaded = urls.length == 0;
 
 		onLoadStarted = new DirectSignaler(this);
@@ -29,7 +35,7 @@ class AssetLoader
 	{
 		onLoadStarted.dispatch(this);
 
-		loader.onComplete = handleLoaded;
+		loader.once("complete", handleLoaded);
 
 		loader.load();
 	}

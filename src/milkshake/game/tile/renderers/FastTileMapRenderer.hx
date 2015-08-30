@@ -4,14 +4,13 @@ import milkshake.game.scene.camera.Camera;
 import milkshake.game.tile.TileMapRenderer;
 import milkshake.game.tile.TileMapData;
 import milkshake.game.tile.TileSet;
-import pixi.BaseTexture;
-import pixi.Sprite;
-import pixi.SpriteBatch;
-import pixi.Texture;
+import pixi.core.particles.ParticleContainer;
+import pixi.core.sprites.Sprite;
+import pixi.core.textures.BaseTexture;
 
 class FastTileMapRenderer extends TileMapRenderer
 {
-	var spriteBatch:SpriteBatch;
+	var spriteBatch:ParticleContainer;
 
 	var tileSet:TileSet;
 	var screenWidth:Int;
@@ -30,7 +29,7 @@ class FastTileMapRenderer extends TileMapRenderer
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
 
-		displayObject.addChild(spriteBatch = new SpriteBatch());
+		displayObject.addChild(spriteBatch = new ParticleContainer());
 	}
 
 	override public function setup(tileMapData:TileMapData):Void
@@ -70,8 +69,8 @@ class FastTileMapRenderer extends TileMapRenderer
 		x =  camera.boundingBox.x; // + -(camera.boundingBox.x % tileSet.tileSize);
 		y =  camera.boundingBox.y; // + -(camera.targetPosition.y % tileSet.tileSize);
 
-		//if(currentXTile != cacheXTile || currentYTile != cacheYTile)
-		//{
+		if(currentXTile != cacheXTile || currentYTile != cacheYTile)
+		{
 			cacheXTile = currentXTile;
 			cacheYTile = currentYTile;
 
@@ -96,7 +95,7 @@ class FastTileMapRenderer extends TileMapRenderer
 					}
 				}
 			}
-		//}
+		}
 
 	}
 }
