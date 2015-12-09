@@ -4,6 +4,8 @@
 -lib compiletime
 -lib mconsole
 -lib nape
+-lib differ
+
 -D pixijs
 -dce full 
 -js app.js
