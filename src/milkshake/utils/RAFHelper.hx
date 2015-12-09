@@ -1,9 +1,8 @@
 package milkshake.utils;
 
 import js.Browser;
-import js.html.RequestAnimationFrameCallback;
 
-class RAFHelper 
+class RAFHelper
 {
 	public var multiplier:Float;
 
