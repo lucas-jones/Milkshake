@@ -94,6 +94,11 @@ class Vector2
 		return new Vector2(x * value, y * value);
 	}
 
+	public function toString():String
+	{
+		return 'x:${x} y:${y}';
+	}
+
 	@:op(A * B)
 	@:commutative
 	public static inline function multiplication(a:Vector2, s:Float)
