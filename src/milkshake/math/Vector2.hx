@@ -50,6 +50,13 @@ class Vector2
 		return new Vector2(value, value);
 	}
 
+	public static function SUM(vectors:Array<Vector2>):Vector2
+	{
+		var o = Vector2.ZERO;
+		for (v in vectors) o.add(v);
+		return o;
+	}
+
 	public var x:Float;
 	public var y:Float;
 
@@ -93,22 +100,22 @@ class Vector2
 	{
 		return new Vector2(a.x * s, a.y * s);
 	}
-	
-	@:op(A / B) 
+
+	@:op(A / B)
 	public static inline function devision(a:Vector2, s:Float)
 	{
 		return new Vector2(a.x / s, a.y / s);
 	}
-	
+
 	@:op(A + B)
-	public static inline function addition(a:Vector2, b:Vector2)
+	public static inline function addition(a:Vector2, b:Vector2):Vector2
 	{
 		return new Vector2(a.x + b.x, a.y + b.y);
 	}
-	
+
 	@:op(A - B)
 	public static inline function subtraction(a:Vector2, b:Vector2)
 	{
 		return new Vector2(a.x - b.x, a.y - b.y);
-	}	
+	}
 }

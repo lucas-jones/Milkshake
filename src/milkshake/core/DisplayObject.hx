@@ -11,7 +11,7 @@ class DisplayObject extends Entity
 {
 	public var scene(get, set):Scene;
 	var _scene:Scene;
-	
+
 	public var scale(default, null):Vector2;
 	public var pivot(default, null):Vector2;
 	public var rotation(default, null):Float;
@@ -46,32 +46,32 @@ class DisplayObject extends Entity
 
 		displayObject = new Container();
 	}
-	
-	override public function addNode(node:Node, ?defaultValues:Dynamic):Void 
+
+	override public function addNode(node:Node, ?defaultValues:Dynamic):Void
 	{
 		if (Std.is(node, DisplayObject))
 		{
 			var displayObjectNode:DisplayObject = cast node;
-			
+
 			displayObject.addChild(displayObjectNode.displayObject);
 			displayObjectNode.scene = scene;
 			displayObjectNode.create();
 		}
-		
+
 		super.addNode(node, defaultValues);
 	}
-	
-	override public function removeNode(node:Node):Void 
+
+	override public function removeNode(node:Node):Void
 	{
 		if (Std.is(node, DisplayObject))
 		{
 			var displayObjectNode:DisplayObject = cast node;
-			
+
 			displayObject.removeChild(displayObjectNode.displayObject);
 			displayObjectNode.scene = null;
 			displayObjectNode.destroy();
 		}
-		
+
 		super.removeNode(node);
 	}
 
@@ -84,15 +84,15 @@ class DisplayObject extends Entity
 		displayObject.scale.y = scale.y;
 
 		displayObject.alpha = alpha;
-		
+
 		displayObject.pivot.x = pivot.x;
 		displayObject.pivot.y = pivot.y;
 
 		displayObject.rotation = rotation;
-		
+
 		displayObject.visible = visible;
 		displayObject.alpha = alpha;
-	
+
 		super.update(delta);
 	}
 
@@ -115,7 +115,7 @@ class DisplayObject extends Entity
 	}
 
 	public function set_scene(scene:Scene):Scene
-	{		
+	{
 		for(node in nodes)
 		{
 			if (Std.is(node, DisplayObject))
@@ -130,11 +130,11 @@ class DisplayObject extends Entity
 
 	public function create():Void
 	{
-		
+
 	}
 
 	public function destroy():Void
 	{
-		
+
 	}
 }

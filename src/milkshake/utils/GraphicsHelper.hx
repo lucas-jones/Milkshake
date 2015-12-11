@@ -2,13 +2,13 @@ package milkshake.utils;
 
 import milkshake.core.Graphics;
 
-class GraphicsHelper 
+class GraphicsHelper
 {
-	public static function generateRectangle(width:Int, height:Int, color:Int):Graphics
+	public static function generateRectangle(width:Int, height:Int, color:Int, ?centered:Bool):Graphics
 	{
 		var graphics = new Graphics();
 		graphics.graphics.beginFill(color);
-		graphics.graphics.drawRect(0, 0, width, height);
+		graphics.graphics.drawRect(centered ? -(width / 2) : 0, centered ? -(height / 2) : 0, width, height);
 
 		return 	graphics;
 	}
