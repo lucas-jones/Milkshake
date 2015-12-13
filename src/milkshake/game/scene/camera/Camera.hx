@@ -50,7 +50,7 @@ class Camera extends DisplayObject
 		boundingBox = new Rectangle(0, 0, 1, 1);
 
 		// Render Width / Height
-		renderTexture = new RenderTexture(Milkshake.getInstance().renderer, this.renderWidth, this.renderHeight);
+		renderTexture = new RenderTexture(cast Milkshake.getInstance().renderer, this.renderWidth, this.renderHeight);
 		renderSprite = new Sprite(renderTexture);
 
 		renderSprite.width = width;
