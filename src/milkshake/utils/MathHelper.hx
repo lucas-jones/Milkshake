@@ -11,4 +11,9 @@ class MathHelper
 		
 		return value < min ? min : value > max ? max : value;
 	}
+
+	public static function toRadians(angle:Float):Float
+	{
+		return angle * Math.PI / 180;
+	}
 }

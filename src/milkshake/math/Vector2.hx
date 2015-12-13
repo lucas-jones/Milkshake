@@ -1,5 +1,7 @@
 package milkshake.math;
 
+import milkshake.math.Vector2;
+
 class Vector2
 {
 	public static var ZERO(get, never):Vector2;
@@ -85,7 +87,26 @@ class Vector2
 
 	public function multi(value:Vector2):Vector2
 	{
-		return new Vector2(x * value.x, y * value.y);
+		x *= value.x;
+		y *= value.y;
+
+		return this;
+	}
+
+	public function dev(value:Vector2):Vector2
+	{
+		x /= value.x;
+		y /= value.y;
+
+		return this;
+	}
+
+	public function devf(value:Float):Vector2
+	{
+		x /= value;
+		y /= value;
+
+		return this;
 	}
 
 	@:op(A * B)
@@ -122,5 +143,10 @@ class Vector2
 	public static inline function subtraction(a:Vector2, b:Vector2)
 	{
 		return new Vector2(a.x - b.x, a.y - b.y);
+	}
+
+	public function clone():Vector2
+	{
+		return new Vector2(x, y);
 	}
 }
