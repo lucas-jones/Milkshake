@@ -14,7 +14,6 @@ class DisplayObject extends Entity
 
 	public var scale(default, null):Vector2;
 	public var pivot(default, null):Vector2;
-	public var rotation(default, null):Float;
 
 	public var width(get, null):Float;
 	public function get_width():Float
@@ -107,6 +106,17 @@ class DisplayObject extends Entity
 				displayObjectNode.render(camera);
 			}
 		}
+	}
+
+	override function set_position(value:Vector2):Vector2
+	{
+		if(this.displayObject != null)
+		{
+			displayObject.position.x = value.x;
+			displayObject.position.y = value.y;
+		}
+
+		return super.set_position(value);
 	}
 
 	public function get_scene():Scene

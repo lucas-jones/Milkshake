@@ -9,7 +9,15 @@ class PhysicsEntity extends Entity implements IPhysicsBody
 {
 	public var body(default, null):Body;
 
-	override public function addNode(node:Node):Void
+	public function new(body:Body, ?id:String)
+	{
+		super(id);
+		this.body = body;
+		body.mass = 1;
+		body.inertia = 1;
+	}
+
+	override public function addNode(node:Node, ?defaultValues:Dynamic):Void
 	{
 		if(Std.is(node, IPhysicsBody))
 		{
@@ -18,6 +26,6 @@ class PhysicsEntity extends Entity implements IPhysicsBody
 			bodyObject.body.space = body.space;
 		}
 
-		super.addNode(node);
+		super.addNode(node, defaultValues);
 	}
 }

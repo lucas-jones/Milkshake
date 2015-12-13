@@ -1,20 +1,20 @@
 package milkshake.components.phsyics;
 
+import pixi.core.graphics.Graphics;
 import milkshake.core.DisplayObject;
 import milkshake.core.Entity;
 import nape.shape.Circle;
 import nape.shape.Polygon;
 import nape.space.Space;
 import nape.util.Debug;
-import pixi.Graphics;
 
 class PhysicsDebug extends DisplayObject
 {
 	public var space(default, null):Space;
 
 	var napeDebugDraw:NapeDebugDraw;
-	
-	public function new(space:Space) 
+
+	public function new(space:Space)
 	{
 		super();
 
@@ -22,7 +22,7 @@ class PhysicsDebug extends DisplayObject
 		napeDebugDraw = new NapeDebugDraw();
 		displayObject.addChild(napeDebugDraw.graphics);
 	}
-	
+
 	override public function update(deltaTime:Float):Void
 	{
 		super.update(deltaTime);
@@ -35,12 +35,12 @@ class PhysicsDebug extends DisplayObject
 class NapeDebugDraw extends Debug
 {
 	public var graphics(default, default):Graphics;
-	
-	public function new() 
+
+	public function new()
 	{
 		graphics = new Graphics();
 	}
-	
+
 	public function draw(space:Space)
 	{
 		graphics.clear();
@@ -51,17 +51,17 @@ class NapeDebugDraw extends Debug
 			{
 				if (Std.is(shape, Polygon))
 				{
-					graphics.beginFill(0x99FF33, 0.5);					
+					graphics.beginFill(0x99FF33, 0.5);
 					//graphics.lineStyle(3, 0x558F1D);
-					
+
 					var polygon:Polygon = cast shape;
-					
+
 					for (index in 0 ... polygon.worldVerts.length)
 					{
 						var position = polygon.worldVerts.at(index);
-						
+
 						if (index == 0) graphics.moveTo(position.x, position.y);
-						else graphics.lineTo(position.x, position.y);						
+						else graphics.lineTo(position.x, position.y);
 					}
 				}
 
@@ -70,13 +70,13 @@ class NapeDebugDraw extends Debug
 					var circle:Circle = cast shape;
 					graphics.beginFill(0x00FF00, 0.5);
 					graphics.lineStyle(1, 0x00FF00);
-					
+
 					graphics.drawCircle(circle.worldCOM.x, circle.worldCOM.y, circle.radius);
-					
+
 					graphics.moveTo(circle.worldCOM.x, circle.worldCOM.y);
 					graphics.lineTo(body.position.x + circle.radius * Math.cos(body.rotation), body.position.y +circle.radius * Math.sin(body.rotation));
 				}
 			}
 		}
-	}	
+	}
 }
