@@ -38,7 +38,6 @@ class DisplayObject extends Entity
 
 		scale = Vector2.ONE;
 		pivot = Vector2.ZERO;
-		rotation = 0;
 
 		visible = true;
 		alpha = 1;

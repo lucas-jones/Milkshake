@@ -34,6 +34,7 @@ class Entity extends Node
 		super(id);
 
 		position = Vector2.ZERO;
+		rotation = 0;
 	}
 
 	public var x(get, set):Float;
