@@ -1,5 +1,7 @@
 package milkshake;
 
+import jsfps.fpsmeter.FPSMeter;
+import milkshake.utils.Globals;
 import js.Browser;
 import milkshake.game.scene.SceneManager;
 import milkshake.utils.RAFHelper;
@@ -51,9 +53,10 @@ class Milkshake
 	public var settings(default, null):Settings; // HAve getters for properties inside json
 	public var renderer(default, null):SystemRenderer;
 	public var raf(default, null):RAFHelper;
+	public var fpsMeter(default, null):FPSMeter;
 
 	public var stage(default, null):Container;
-	
+
 	public var scenes(default, null):SceneManager;
 
 	// Temp
@@ -69,7 +72,7 @@ class Milkshake
 
 		//renderer = Pixi.autoDetectRenderer(settings.width, settings.height, Browser.document.getElementById('canvas'));
 		renderer = untyped pixi.core.Pixi.autoDetectRenderer(settings.width, settings.height, { view: cast Browser.document.getElementById('canvas') });
-		
+
 		Browser.document.body.appendChild(renderer.view);
 
 		raf = new RAFHelper(update);
@@ -77,14 +80,30 @@ class Milkshake
 
 		stage = new Container();
 		scenes = new SceneManager();
-		
+
 		stage.addChild(scenes.displayObject);
+
+		if(Globals.DEBUG)
+		{
+			this.fpsMeter = new FPSMeter(null,
+			{
+				theme: 'colorful',
+				heat: 1,
+				graph: 1,
+				history: 20
+			});
+		}
 	}
 
 	public function update(delta:Float):Void
 	{
 		//mousePosition = stage.getMousePosition();
 		scenes.update(delta);
+
+		if(Globals.DEBUG)
+		{
+			fpsMeter.tick();
+		}
 
 		renderer.render(stage);
 	}
