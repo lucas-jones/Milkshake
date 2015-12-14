@@ -20,5 +20,5 @@ class Globals
 		return new Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	}
 
-	public static var DEBUG:Bool = false;
+	public static var DEBUG:Bool = true;
 }
