@@ -8,7 +8,7 @@ import sys.io.File;
 
 using StringTools;
 
-class SpriteSheetsBuilder 
+class SpriteSheetsBuilder
 {
 	public static function build(directory:String):Array<Field>
 	{
@@ -20,11 +20,11 @@ class SpriteSheetsBuilder
 		{
 			if (!FileSystem.isDirectory(directory + fileName) && fileName.indexOf(".json") != -1)
 			{
-				// push filenames in list. 
+				// push filenames in list.
 				spriteSheets.push(new SpriteSheetsFile(fileName, directory));
 			}
 		}
-		
+
 		var fields:Array<Field> = Context.getBuildFields();
 
 		for (spriteSheet in spriteSheets)
@@ -38,7 +38,7 @@ class SpriteSheetsBuilder
 				pos: Context.currentPos()
 			});
 		}
-		
+
 		return fields;
 	}
 }
@@ -47,11 +47,11 @@ class SpriteSheetsFile
 {
 	public var name:String;
 	public var value:String;
-	
+
 	public function new(fileName:String, directory:String)
 	{
 		this.name = fileName.split(".")[0].toUpperCase();
-		this.value = directory.replace("bin", "") + fileName;
+		this.value = directory.replace("bin/", "") + fileName;
 	}
 }
 #end
