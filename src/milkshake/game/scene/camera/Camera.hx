@@ -1,13 +1,10 @@
 package milkshake.game.scene.camera;
 
+import milkshake.utils.MathHelper;
 import milkshake.core.DisplayObject;
-import milkshake.core.Entity;
-import milkshake.core.Graphics;
-import milkshake.core.Text;
 import milkshake.math.Vector2;
 import milkshake.Milkshake;
 import milkshake.utils.Globals;
-import milkshake.utils.GraphicsHelper;
 import pixi.core.math.Matrix;
 import pixi.core.math.Point;
 import pixi.core.math.shapes.Rectangle;
@@ -17,8 +14,10 @@ import pixi.core.textures.RenderTexture;
 class Camera extends DisplayObject
 {
 	public var active(default, default):Bool;
+	public var fixedRotation:Bool = true;
 
 	public var targetPosition:Vector2;
+	public var targetRotation:Float;
 	public var targetZoom:Float;
 
 	public var boundingBox:Rectangle;
@@ -57,6 +56,7 @@ class Camera extends DisplayObject
 		renderSprite.height = height;
 
 		targetPosition = new Vector2(width, height).multi(Vector2.HALF);
+		targetRotation = 0;
 		targetZoom = 1;
 
 		matrix = new Matrix();
@@ -71,8 +71,9 @@ class Camera extends DisplayObject
 	{
 		// Play that funky matrix music!
 		matrix.identity();
-		matrix.translate(-targetPosition.x, -targetPosition.y);		
-		matrix.scale(targetZoom, targetZoom);	
+		matrix.translate(-targetPosition.x, -targetPosition.y);
+		if(!fixedRotation) matrix.rotate(-targetRotation + MathHelper.toRadians(180));
+		matrix.scale(targetZoom, targetZoom);
 		matrix.translate(width / 2, height / 2);
 
 		updateBoundingBox();
