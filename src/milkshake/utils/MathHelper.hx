@@ -14,4 +14,9 @@ class MathHelper
 	{
 		return angle * Math.PI / 180;
 	}
+
+	public static function lerp(start:Float, end:Float, percent:Float):Float
+	{
+		return (start + percent*(end - start));
+	}
 }
