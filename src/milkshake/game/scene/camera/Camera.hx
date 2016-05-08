@@ -72,7 +72,7 @@ class Camera extends DisplayObject
 		// Play that funky matrix music!
 		matrix.identity();
 		matrix.translate(-targetPosition.x, -targetPosition.y);
-		if(!fixedRotation) matrix.rotate(-targetRotation + MathHelper.toRadians(180));
+		//if(!fixedRotation) matrix.rotate(-targetRotation + MathHelper.toRadians(180));
 		matrix.scale(targetZoom, targetZoom);
 		matrix.translate(width / 2, height / 2);
 
