@@ -1,6 +1,6 @@
 package milkshake;
 
-import jsfps.fpsmeter.FPSMeter;
+//import jsfps.fpsmeter.FPSMeter;
 import milkshake.utils.Globals;
 import js.Browser;
 import milkshake.game.scene.SceneManager;
@@ -53,7 +53,7 @@ class Milkshake
 	public var settings(default, null):Settings; // HAve getters for properties inside json
 	public var renderer(default, null):SystemRenderer;
 	public var raf(default, null):RAFHelper;
-	public var fpsMeter(default, null):FPSMeter;
+	// public var fpsMeter(default, null):FPSMeter;
 
 	public var stage(default, null):Container;
 
@@ -85,13 +85,13 @@ class Milkshake
 
 		if(Globals.DEBUG)
 		{
-			this.fpsMeter = new FPSMeter(null,
-			{
-				theme: 'colorful',
-				heat: 1,
-				graph: 1,
-				history: 20
-			});
+			// this.fpsMeter = new FPSMeter(null,
+			// {
+			// 	theme: 'colorful',
+			// 	heat: 1,
+			// 	graph: 1,
+			// 	history: 20
+			// });
 		}
 	}
 
@@ -102,7 +102,7 @@ class Milkshake
 
 		if(Globals.DEBUG)
 		{
-			fpsMeter.tick();
+			// fpsMeter.tick();
 		}
 
 		renderer.render(stage);

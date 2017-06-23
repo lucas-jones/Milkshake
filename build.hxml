@@ -5,6 +5,7 @@
 -lib mconsole
 -lib nape
 -lib differ
+-lib pixijs
 
 -D pixijs
 -dce full 
