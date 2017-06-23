@@ -9,9 +9,9 @@ using Lambda;
 
 class AssetLoader
 {
-	public var onLoadStarted(default, null):Signaler<Void>;
-	public var onLoadUpdate(default, null):Signaler<Void>;
-	public var onLoadComplete(default, null):Signaler<Void>;
+	public var onLoadStarted(default, null):Signaler<Dynamic>;
+	public var onLoadUpdate(default, null):Signaler<Dynamic>;
+	public var onLoadComplete(default, null):Signaler<Dynamic>;
 
 	public var loaded(default, null):Bool;
 

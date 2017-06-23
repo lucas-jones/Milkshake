@@ -41,7 +41,7 @@ class DirectSignaler<Datatype> implements Signaler<Datatype> {
 	 * disturbed or not.
 	 */
 	private var mostRecentPropagationUndisturbed:Bool;
-	private var notificationTargets:List<Signaler<Void>>;
+	private var notificationTargets:List<Signaler<Dynamic>>;
 	private var rejectNullData:Bool;
 	private var sentinel:SentinelBond<Datatype>;
 	public var subject(default, null):Subject;
