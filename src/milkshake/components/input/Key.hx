@@ -12,4 +12,5 @@ class Key
 	public static inline var S = 83;
 	public static inline var SHIFT = 16;
 	public static inline var SPACE = 32;
+	public static inline var ENTER = 13;
 }
