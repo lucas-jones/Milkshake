@@ -22,13 +22,11 @@ class Input
 
 	function handleKeyboardDown(e:KeyboardEvent):Void
 	{
-		mconsole.Console.log(e.keyCode + "keydown");
 		keyMap[e.keyCode] = keyMap.exists(e.keyCode) ? null : KEY_DOWN;
 	}
 
 	function handleKeyboardUp(e:KeyboardEvent):Void
 	{
-		mconsole.Console.log(e.keyCode + "keyup");
 		keyMap[e.keyCode] = KEY_UP;
 	}
 
