@@ -25,6 +25,11 @@ class SceneManager extends DisplayObject
 	
 	public function removeScene(sceneId:String):Void
 	{
+		if(currentScene.id == sceneId)
+		{
+			removeNode(currentScene.cameras);
+			currentScene = null;
+		}
 		scenes.remove(sceneId);
 	}
 	
