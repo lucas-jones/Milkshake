@@ -3,38 +3,55 @@ package milkshake.components.input;
 import js.html.KeyboardEvent;
 import js.Browser;
 
-class Input 
+class Input
 {
-	static inline var KEY_UP_EVENT = "keyup";
-	static inline var KEY_DOWN_EVENT = "keydown";
-	
-	var keyMap:Map<Int, Bool>;
+	static inline var KEY_UP = "keyup";
+	static inline var KEY_DOWN = "keydown";
+
+	var keyMap:Map<Int, String>;
 
 	public function new()
 	{
 		keyMap = new Map();
-	
+
 		var window = Browser.window;
 
-		window.addEventListener(KEY_UP_EVENT, handleKeyboardEvent.bind(_, false));
-		window.addEventListener(KEY_DOWN_EVENT, handleKeyboardEvent.bind(_, true));
+		window.addEventListener(KEY_UP, handleKeyboardUp);
+		window.addEventListener(KEY_DOWN, handleKeyboardDown);
 	}
 
-	function handleKeyboardEvent(e:KeyboardEvent, isKeyDown:Bool):Void
+	function handleKeyboardDown(e:KeyboardEvent):Void
 	{
-		keyMap[e.keyCode] = isKeyDown;
+		mconsole.Console.log(e.keyCode + "keydown");
+		keyMap[e.keyCode] = keyMap.exists(e.keyCode) ? null : KEY_DOWN;
+	}
+
+	function handleKeyboardUp(e:KeyboardEvent):Void
+	{
+		mconsole.Console.log(e.keyCode + "keyup");
+		keyMap[e.keyCode] = KEY_UP;
 	}
 
 	public function isDown(key:Int):Bool
 	{
-		return keyMap[key];
+		return keyMap.exists(key);
+	}
+
+	public function isDownOnce(key:Int):Bool
+	{
+		return keyMap[key] == KEY_DOWN;
+	}
+
+	public function isUpOnce(key:Int):Bool
+	{
+		return keyMap[key] == KEY_UP;
 	}
 
 	public function isEitherDown(keys:Array<Int>):Bool
 	{
 		for(key in keys)
 		{
-			if(keyMap[key]) return true;
+			if(keyMap.exists(key)) return true;
 		}
 		
 		return false;
@@ -44,9 +61,17 @@ class Input
 	{
 		for(key in keys)
 		{
-			if(!keyMap[key]) return false;
+			if(!keyMap.exists(key)) return false;
 		}
 		
 		return true;
+	}
+
+	public function update(deltaTime:Float):Void
+	{
+		for (key in keyMap.keys()) {
+			if(isDownOnce(key)) this.keyMap[key] = null;
+			if(isUpOnce(key)) keyMap.remove(key);
+		}
 	}
 }

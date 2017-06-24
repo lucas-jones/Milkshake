@@ -1,6 +1,7 @@
 package milkshake;
 
 //import jsfps.fpsmeter.FPSMeter;
+import milkshake.components.input.Input;
 import milkshake.utils.Globals;
 import js.Browser;
 import milkshake.game.scene.SceneManager;
@@ -59,6 +60,8 @@ class Milkshake
 
 	public var scenes(default, null):SceneManager;
 
+	public var input(default, null):Input;
+
 	// Temp
 	public var mousePosition(default, null):pixi.core.math.Point;
 
@@ -80,6 +83,8 @@ class Milkshake
 
 		stage = new Container();
 		scenes = new SceneManager();
+
+		input = new Input();
 
 		stage.addChild(scenes.displayObject);
 
@@ -106,5 +111,7 @@ class Milkshake
 		}
 
 		renderer.render(stage);
+
+		input.update(delta);
 	}
 }
