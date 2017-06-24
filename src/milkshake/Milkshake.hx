@@ -1,6 +1,7 @@
 package milkshake;
 
 //import jsfps.fpsmeter.FPSMeter;
+import milkshake.game.sound.SoundManager;
 import milkshake.components.input.Input;
 import milkshake.utils.Globals;
 import js.Browser;
@@ -60,6 +61,8 @@ class Milkshake
 
 	public var scenes(default, null):SceneManager;
 
+	public var sounds(default, null):SoundManager;
+
 	public var input(default, null):Input;
 
 	// Temp
@@ -83,7 +86,7 @@ class Milkshake
 
 		stage = new Container();
 		scenes = new SceneManager();
-
+		sounds = new SoundManager();
 		input = new Input();
 
 		stage.addChild(scenes.displayObject);
