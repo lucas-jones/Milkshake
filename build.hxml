@@ -6,6 +6,7 @@
 -lib nape
 -lib differ
 -lib pixijs
+-lib pixi-particles
 
 -D pixijs
 -dce full 
