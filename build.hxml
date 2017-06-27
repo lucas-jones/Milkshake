@@ -1,14 +1,8 @@
--main milkshake.Milkshake
--cp libs
--cp src
--lib compiletime
--lib mconsole
--lib nape
--lib differ
--lib pixijs
--lib pixi-particles
--lib waud
-
--D pixijs
--dce full 
--js app.js
+-lib compiletime:2.7.0
+-lib mconsole:1.6.0
+-lib nape:2.0.20
+-lib differ:1.3.0
+-lib pixijs:3.1.3
+-lib pixi-particles:1.0.1
+-lib waud:0.9.10
+-lib actuate:1.8.7
