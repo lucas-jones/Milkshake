@@ -48,6 +48,7 @@ class SceneManager extends DisplayObject
 		}
 		else
 		{
+			untyped pixi.core.Pixi.loader = currentScene.loader.loader;
 			currentScene.loader.onLoadComplete.bindVoid(function()
 			{
 				currentScene.create();
