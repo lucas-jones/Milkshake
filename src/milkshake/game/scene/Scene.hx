@@ -14,7 +14,7 @@ class Scene extends DisplayObject
 	public var cameras(default, null):CameraManager;
 	public var loader(default, null):AssetLoader;
 
-	public function new(?id:String, content:Array<String>, ?defaultCameras:Array<Camera>, clearColor:Int = Color.RED)
+	public function new(?id:String, content:Array<String>, ?defaultCameras:Array<Camera>, clearColor:Int = Color.Tomato)
 	{
 		super(id);
 

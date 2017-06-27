@@ -25,7 +25,7 @@ class Graphics extends DisplayObject
 		graphics.clear();
 	}
 
-	public function begin(color:Int, alpha:Float = 1, lineWidth:Float = 0, lineColor:Int = Color.WHITE)
+	public function begin(color:Int, alpha:Float = 1, lineWidth:Float = 0, lineColor:Int = Color.White)
 	{
 		graphics.beginFill(color, alpha);
 		graphics.lineStyle(lineWidth, lineColor);

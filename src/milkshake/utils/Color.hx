@@ -138,7 +138,7 @@ class Color
 	public static inline var Turquoise:Int = 0x40e0d0;
 	public static inline var Violet:Int = 0xee82ee;
 	public static inline var Wheat:Int = 0xf5deb3;
-	public static inline var White:Int = Maalue;
+	public static inline var White:Int = 0xffffff;
 	public static inline var WhiteSmoke:Int = 0xf5f5f5;
 	public static inline var Yellow:Int = 0xffff00;
 	public static inline var YellowGreen:Int = 0x9acd32;
