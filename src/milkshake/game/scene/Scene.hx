@@ -22,5 +22,7 @@ class Scene extends DisplayObject
 
 		loader = new AssetLoader(content);
 		cameras = new CameraManager(defaultCameras);
+
+		addNode(GraphicsHelper.generateRectangle(Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT, clearColor));
 	}
 }
