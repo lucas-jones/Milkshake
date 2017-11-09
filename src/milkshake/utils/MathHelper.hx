@@ -24,6 +24,11 @@ class MathHelper
 			   tangentA * amount + valueA;
 	}
 
+	public static function map(fromMin:Float, fromMax:Float, toMin:Float, toMax:Float, value:Float):Float
+	{
+		return toMin + (value - fromMin) * (toMax - toMin) / (fromMax - fromMin);
+	}
+
 	public static function smoothStep(valueA:Float, valueB:Float, amount:Float):Float
 	{
 		return hermite(valueA, 0, valueB, 0, clamp(amount, 0, 1));
