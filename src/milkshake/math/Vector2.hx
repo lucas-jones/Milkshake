@@ -59,6 +59,11 @@ class Vector2
 		return o;
 	}
 
+	public static function RADIAN(radian:Float, length:Float = 1):Vector2
+	{
+		return new Vector2(Math.cos(radian), Math.sin(radian)).multiSingle(length);
+	}
+
 	public var x:Float;
 	public var y:Float;
 
