@@ -14,7 +14,6 @@ import pixi.core.textures.RenderTexture;
 class Camera extends DisplayObject
 {
 	public var active(default, default):Bool;
-	public var fixedRotation:Bool = true;
 
 	public var targetPosition:Vector2;
 	public var targetRotation:Float;
@@ -72,7 +71,7 @@ class Camera extends DisplayObject
 		// Play that funky matrix music!
 		matrix.identity();
 		matrix.translate(-targetPosition.x, -targetPosition.y);
-		if(!fixedRotation) matrix.rotate(-targetRotation);
+		matrix.rotate(-targetRotation);
 		matrix.scale(targetZoom, targetZoom);
 		matrix.translate(width / 2, height / 2);
 
