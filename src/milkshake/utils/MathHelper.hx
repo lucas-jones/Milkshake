@@ -44,6 +44,28 @@ class MathHelper
 		return (start + percent * (end - start));
 	}
 
+	public static function lerpAngle(start:Float, end:Float, percent:Float):Float
+	{
+		var d:Float = end - start;
+		
+		if(d > Math.PI) d = d - 2 * Math.PI;
+		if(d < -Math.PI) d = d + 2 * Math.PI;
+
+		return start + d * percent;
+	}
+
+	public static function unwrapRadian(radian:Float):Float
+	{
+		var twoPI:Float = 2.0 * Math.PI;
+		
+		radian = radian % twoPI;
+		
+		if(radian > Math.PI) radian -= twoPI;
+		if(radian < -Math.PI) radian += twoPI;
+
+		return radian;
+	}
+
 	public static function toDegrees(radians:Float):Float
 	{
 		return radians * 180 / Math.PI;
