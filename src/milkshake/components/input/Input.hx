@@ -51,7 +51,7 @@ class Input
 		{
 			if(keyMap.exists(key)) return true;
 		}
-		
+
 		return false;
 	}
 
@@ -61,7 +61,7 @@ class Input
 		{
 			if(!keyMap.exists(key)) return false;
 		}
-		
+
 		return true;
 	}
 

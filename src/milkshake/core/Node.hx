@@ -3,6 +3,7 @@ package milkshake.core;
 import haxe.exception.Exception;
 import hsl.haxe.direct.DirectSignaler.DirectSignaler;
 import hsl.haxe.Signaler.Signaler;
+import milkshake.Milkshake;
 
 using Reflect;
 
@@ -17,6 +18,8 @@ class Node
 	public var onAddedToNode(default, null):Signaler<Node>;
 	public var onNodeRemoved(default, null):Signaler<Node>;
 	public var onRemovedFromNode(default, null):Signaler<Node>;
+
+	private var milk(get, null): Milkshake;
 
 	public function new(?id:String = null)
 	{
@@ -59,5 +62,10 @@ class Node
 
 		onNodeRemoved.dispatch(node);
 		node.onRemovedFromNode.dispatch(this);
+	}
+
+	function get_milk():Milkshake
+	{
+		return Milkshake.getInstance();
 	}
 }
